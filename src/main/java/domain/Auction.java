@@ -1,9 +1,12 @@
 package domain;
 
+import org.joda.time.DateTime;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
-/* bla*/
+import org.joda.time.DateTime;
+import java.time.temporal.ChronoUnit;
+
 public class Auction {
 
 
@@ -11,24 +14,30 @@ public class Auction {
     private String description;
     private String address;
     private ArrayList<String> pictures;
-    private float priceInit;
-    private Date dateInit;
-    private Date dateFinal;
+    private double priceInit;
+    private DateTime dateInit;
+    private DateTime dateFinal;
     private LocalTime hoursFinal;
-    private String owner;
+    private User owner;
     private StateAuction state;
+    private double autoBid;
+    private DateTime dateFinalNew;
 
     public Auction() {
     }
 
-    public Auction(String title, String address, float priceInit, Date dateInit, Date dateFinal, String owner) {
+    public Auction(String title, String description, String address, double priceInit, DateTime dateInit,
+                   DateTime dateFinal, LocalTime hoursFinal, User owner) {
         this.title = title;
+        this.description = description;
         this.address = address;
         this.priceInit = priceInit;
         this.dateInit = dateInit;
         this.dateFinal = dateFinal;
+        this.hoursFinal = hoursFinal;
         this.owner = owner;
         this.state = new NewAuction();
+        this.autoBid = priceInit;
     }
 
     public void inProgress(){
@@ -41,6 +50,69 @@ public class Auction {
         state.update(this);
     }
 
+    public Boolean isOwner(User user){
+        return user.getName() == owner.getName();
+    }
+
+    public void makeABid(User user, double autoBid){
+
+        double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
+
+        if(this.isOwner(user)){
+            return;
+        }
+
+        if(this.getAutoBid() < nextBid){
+
+            if(this.fiveMinutesLeftToFinish() && !this.exceeds48Hours()){
+
+                this.setPriceInit(nextBid);
+                this.setOwner(user);
+                this.setAutoBid(autoBid);
+                this.setDateFinalNew(getDateFinal().plusDays(2));
+                this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
+
+            } else {
+
+                this.setPriceInit(nextBid);
+                this.setOwner(user);
+                this.setAutoBid(autoBid);
+            }
+
+        } else {
+
+            this.setPriceInit(nextBid);
+        }
+        return;
+    }
+
+    public Boolean fiveMinutesLeftToFinish(){
+
+        LocalTime menusFiveMinutes = this.getHoursFinal().minusMinutes(5);
+        long res = menusFiveMinutes.until(this.getHoursFinal(), ChronoUnit.HOURS);
+        return res < 5;
+    }
+
+    public Boolean exceeds48Hours(){
+
+        return this.getDateFinal().equals(this.dateFinalNew);
+    }
+
+    public DateTime getDateFinalNew() {
+        return dateFinalNew;
+    }
+
+    public void setDateFinalNew(DateTime dateFinalNew) {
+        this.dateFinalNew = dateFinalNew;
+    }
+
+    public double getAutoBid() {
+        return autoBid;
+    }
+
+    public void setAutoBid(double autoBid) {
+        this.autoBid = autoBid;
+    }
     public String getTitle() {
         return title;
     }
@@ -73,27 +145,27 @@ public class Auction {
         this.pictures = pictures;
     }
 
-    public float getPriceInit() {
+    public double getPriceInit() {
         return priceInit;
     }
 
-    public void setPriceInit(float priceInit) {
+    public void setPriceInit(double priceInit) {
         this.priceInit = priceInit;
     }
 
-    public Date getDateInit() {
+    public DateTime getDateInit() {
         return dateInit;
     }
 
-    public void setDateInit(Date dateInit) {
+    public void setDateInit(DateTime dateInit) {
         this.dateInit = dateInit;
     }
 
-    public Date getDateFinal() {
+    public DateTime getDateFinal() {
         return dateFinal;
     }
 
-    public void setDateFinal(Date dateFinal) {
+    public void setDateFinal(DateTime dateFinal) {
         this.dateFinal = dateFinal;
     }
 
@@ -105,11 +177,11 @@ public class Auction {
         this.hoursFinal = hoursFinal;
     }
 
-    public String getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

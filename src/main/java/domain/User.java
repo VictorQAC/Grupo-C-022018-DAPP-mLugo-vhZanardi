@@ -11,6 +11,7 @@ public class User {
     private String email;
     private String password;
     private DateTime birthdate;
+    private int id;
 
 
     public User (String name,String lastName, String email, String password, DateTime birthdate){
@@ -60,6 +61,14 @@ public class User {
 
     public void setBirthdate(DateTime birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }
