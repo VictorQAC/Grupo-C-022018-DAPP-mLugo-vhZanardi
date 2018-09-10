@@ -2,7 +2,7 @@ package domain;
 
 import org.joda.time.DateTime;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 public class User {
 
@@ -71,4 +71,13 @@ public class User {
         this.id = id;
     }
 
+    public Auction createAuction(String title, String description, String address, double priceInit, DateTime dateInit,
+                                 DateTime dateFinal, LocalTime hoursFinal, User owner) {
+
+        return new Auction(title,description,address,priceInit,dateInit,dateFinal,hoursFinal,owner);
+    }
+
+    public void bidAtAuction(Auction auction, double autoBid) {
+        auction.makeABid(this,autoBid);
+    }
 }

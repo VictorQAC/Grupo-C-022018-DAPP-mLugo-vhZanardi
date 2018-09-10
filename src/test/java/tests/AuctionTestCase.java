@@ -1,6 +1,7 @@
 package tests;
 
 import domain.Auction;
+import domain.AuctionBuilder;
 import domain.User;
 import org.joda.time.DateTime;
 import org.junit.Before;

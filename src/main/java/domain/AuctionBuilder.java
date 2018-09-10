@@ -27,4 +27,9 @@ public class AuctionBuilder {
 
     }
 
+    public AuctionBuilder withDateFinal(DateTime dateFinal){
+        this.dateFinal = dateFinal;
+        return this;
+    }
+
 }
