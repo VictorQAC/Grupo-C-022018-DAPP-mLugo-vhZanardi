@@ -58,7 +58,7 @@ public class Auction {
         DateTime dateCurrent = DateTime.now();
         LocalTime timeCurrent = LocalTime.now();
 
-        if(dateCurrent.equals(this.getDateFinalNew()) && timeCurrent.equals(this.getHoursFinal())){
+        if(dateCurrent.equals(this.getDateFinal()) && timeCurrent.equals(this.getHoursFinal())){
             this.setState(new CloseAuction());
         }
 
@@ -87,7 +87,7 @@ public class Auction {
                 this.setPriceInit(nextBid);
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
-                this.setDateFinalNew(this.getDateFinal().plusDays(2));
+                //this.setDateFinalNew(this.getDateFinal().plusDays(2));
                 this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
 
             } else {
@@ -109,7 +109,7 @@ public class Auction {
         //LocalTime menusFiveMinutes = this.getHoursFinal().minusMinutes(5);
         LocalTime timeCurrent = LocalTime.now();
         long res = timeCurrent.until(this.getHoursFinal(), ChronoUnit.MINUTES);
-        return res > -5;
+        return res < 5;
     }
 
     public Boolean exceeds48Hours(){
