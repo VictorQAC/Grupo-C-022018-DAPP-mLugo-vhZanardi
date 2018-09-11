@@ -70,7 +70,7 @@ public class UserTestCase {
         user = aUser().withName("Jose").build();
         user.bidAtAuction(auction, 10);
 
-        assertEquals(10, auction.getPriceInit(), 0);
+        assertEquals(10.5, auction.getPriceInit(), 0);
 
     }
 }
