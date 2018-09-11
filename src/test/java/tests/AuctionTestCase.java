@@ -4,6 +4,7 @@ import domain.Auction;
 import domain.AuctionBuilder;
 import domain.User;
 import org.joda.time.DateTime;
+import java.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +41,18 @@ public class AuctionTestCase {
         assertEquals(10.5,auction.getPriceInit(),0);
         auction.makeABid(owner2,20);
         assertEquals(10.5,auction.getPriceInit(),0);
+    }
+
+    @Test
+    public void testBidAuctionThatHasFiveMinutesToClose(){
+
+        LocalTime menusFiveMinutes = LocalTime.now().minusMinutes(4);
+        auction.setHoursFinal(menusFiveMinutes);
+        assertEquals(10,auction.getPriceInit(),0);
+        auction.makeABid(owner2,20);
+        assertEquals(10.5,auction.getPriceInit(),0);
+        DateTime extendTwoDays = auction.getDateFinal().plusDays(2);
+        assertEquals(extendTwoDays,auction.getDateFinalNew());
     }
 
 }

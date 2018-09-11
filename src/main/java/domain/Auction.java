@@ -19,6 +19,7 @@ public class Auction {
     private DateTime dateFinal;
     private LocalTime hoursFinal;
     private User owner;
+    private User currentWinner;
     private StateAuction state;
     private double autoBid;
     private DateTime dateFinalNew;
@@ -38,6 +39,8 @@ public class Auction {
         this.owner = owner;
         this.state = new NewAuction();
         this.autoBid = priceInit;
+        this.dateFinalNew = dateFinal;
+        this.currentWinner = owner;
     }
 
     public void inProgress(){
@@ -50,15 +53,19 @@ public class Auction {
         state.update(this);
     }
 
+    public Boolean isCurrentWinner(User user){
+        return user.getName() == this.getCurrentWinner().getName();
+    }
+
     public Boolean isOwner(User user){
-        return user.getName() == owner.getName();
+        return user.getName() == this.getOwner().getName();
     }
 
     public void makeABid(User user, double autoBid){
 
         double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
 
-        if(this.isOwner(user)){
+        if(this.isCurrentWinner(user)){
             return;
         }
 
@@ -67,15 +74,15 @@ public class Auction {
             if(this.fiveMinutesLeftToFinish() && !this.exceeds48Hours()){
 
                 this.setPriceInit(nextBid);
-                this.setOwner(user);
+                this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
-                this.setDateFinalNew(getDateFinal().plusDays(2));
+                this.setDateFinalNew(this.getDateFinal().plusDays(2));
                 this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
 
             } else {
 
                 this.setPriceInit(nextBid);
-                this.setOwner(user);
+                this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
             }
 
@@ -88,14 +95,18 @@ public class Auction {
 
     public Boolean fiveMinutesLeftToFinish(){
 
-        LocalTime menusFiveMinutes = this.getHoursFinal().minusMinutes(5);
-        long res = menusFiveMinutes.until(this.getHoursFinal(), ChronoUnit.HOURS);
-        return res < 5;
+        //LocalTime menusFiveMinutes = this.getHoursFinal().minusMinutes(5);
+        LocalTime timeCurrent = LocalTime.now();
+        long res = timeCurrent.until(this.getHoursFinal(), ChronoUnit.MINUTES);
+        return res > -5;
     }
 
     public Boolean exceeds48Hours(){
 
-        return this.getDateFinal().equals(this.dateFinalNew);
+        DateTime extendTwoDays = this.getDateFinal().plusDays(2);
+        DateTime dateCurrent = DateTime.now();
+
+        return dateCurrent.equals(extendTwoDays);
     }
 
     public DateTime getDateFinalNew() {
@@ -193,4 +204,11 @@ public class Auction {
         this.state = state;
     }
 
+    public User getCurrentWinner() {
+        return currentWinner;
+    }
+
+    public void setCurrentWinner(User currentWinner) {
+        this.currentWinner = currentWinner;
+    }
 }
