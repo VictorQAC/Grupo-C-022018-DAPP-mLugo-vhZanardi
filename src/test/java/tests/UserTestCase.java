@@ -54,23 +54,4 @@ public class UserTestCase {
         assertEquals("Guitarra Electrica", auction.getTitle());
 
     }
-
-    @Test
-    public void testBidAtAuction_NotFinalized() {
-        auction = auctionBuilder.withDateFinal(new DateTime("2018-09-30")).build();
-        user = aUser().withName("Jose").build();
-        user.bidAtAuction(auction, 10);
-
-        assertEquals(10.5, auction.getPriceInit(), 0);
-    }
-
-    @Test
-    public void testBidAtAuction_Finalized() {
-        auction = auctionBuilder.withDateFinal(new DateTime("2018-09-06")).build();
-        user = aUser().withName("Jose").build();
-        user.bidAtAuction(auction, 10);
-
-        assertEquals(10.5, auction.getPriceInit(), 0);
-
-    }
 }

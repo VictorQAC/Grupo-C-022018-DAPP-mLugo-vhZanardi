@@ -44,13 +44,24 @@ public class Auction {
     }
 
     public void inProgress(){
-        this.state = new InProgressAuction();
-        state.update(this);
+
+        DateTime dateCurrent = DateTime.now();
+        LocalTime timeCurrent = LocalTime.now();
+
+        if(dateCurrent.equals(this.getDateInit())){
+            this.setState(new InProgressAuction());
+        }
     }
 
     public void close(){
-        this.state = new CloseAuction();
-        state.update(this);
+
+        DateTime dateCurrent = DateTime.now();
+        LocalTime timeCurrent = LocalTime.now();
+
+        if(dateCurrent.equals(this.getDateFinalNew()) && timeCurrent.equals(this.getHoursFinal())){
+            this.setState(new CloseAuction());
+        }
+
     }
 
     public Boolean isCurrentWinner(User user){
@@ -65,7 +76,7 @@ public class Auction {
 
         double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
 
-        if(this.isCurrentWinner(user)){
+        if(this.isCurrentWinner(user) || !this.getState().isInProgress()){
             return;
         }
 

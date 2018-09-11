@@ -1,8 +1,6 @@
 package tests;
 
-import domain.Auction;
-import domain.AuctionBuilder;
-import domain.User;
+import domain.*;
 import org.joda.time.DateTime;
 import java.time.LocalTime;
 import org.junit.Before;
@@ -23,6 +21,7 @@ public class AuctionTestCase {
         auction = aAuction().build();
         owner2 = new User("Miguel","Caneo","chinocaneo@qac.com",
                 "vamosCervecero78",new DateTime("1983-09-17"));
+        auction.setState(new InProgressAuction());
     }
 
 
@@ -53,6 +52,16 @@ public class AuctionTestCase {
         assertEquals(10.5,auction.getPriceInit(),0);
         DateTime extendTwoDays = auction.getDateFinal().plusDays(2);
         assertEquals(extendTwoDays,auction.getDateFinalNew());
+    }
+
+    @Test
+    public void testBidAtAuctionWithTheEndDate(){
+
+        assertEquals(10,auction.getPriceInit(),0);
+        auction.setState(new CloseAuction());
+        auction.makeABid(owner2,20);
+        assertEquals(10,auction.getPriceInit(),0);
+
     }
 
 }
