@@ -9,7 +9,6 @@ import java.time.temporal.ChronoUnit;
 
 public class Auction {
 
-
     private String title;
     private String description;
     private String address;
@@ -22,16 +21,13 @@ public class Auction {
     private User currentWinner;
     private StateAuction state;
     private double autoBid;
-    private DateTime dateFinalNew;
-
-    public Auction() {
-    }
 
     public Auction(String title, String description, String address, double priceInit, DateTime dateInit,
                    DateTime dateFinal, LocalTime hoursFinal, User owner) {
         this.title = title;
         this.description = description;
         this.address = address;
+        this.pictures = new ArrayList<String>();
         this.priceInit = priceInit;
         this.dateInit = dateInit;
         this.dateFinal = dateFinal;
@@ -39,7 +35,6 @@ public class Auction {
         this.owner = owner;
         this.state = new NewAuction();
         this.autoBid = priceInit;
-        this.dateFinalNew = dateFinal;
         this.currentWinner = owner;
     }
 
@@ -68,10 +63,6 @@ public class Auction {
         return user.getName() == this.getCurrentWinner().getName();
     }
 
-    public Boolean isOwner(User user){
-        return user.getName() == this.getOwner().getName();
-    }
-
     public void makeABid(User user, double autoBid){
 
         double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
@@ -87,7 +78,6 @@ public class Auction {
                 this.setPriceInit(nextBid);
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
-                //this.setDateFinalNew(this.getDateFinal().plusDays(2));
                 this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
 
             } else {
@@ -106,7 +96,6 @@ public class Auction {
 
     public Boolean fiveMinutesLeftToFinish(){
 
-        //LocalTime menusFiveMinutes = this.getHoursFinal().minusMinutes(5);
         LocalTime timeCurrent = LocalTime.now();
         long res = timeCurrent.until(this.getHoursFinal(), ChronoUnit.MINUTES);
         return res < 5;
@@ -120,12 +109,8 @@ public class Auction {
         return dateCurrent.equals(extendTwoDays);
     }
 
-    public DateTime getDateFinalNew() {
-        return dateFinalNew;
-    }
-
-    public void setDateFinalNew(DateTime dateFinalNew) {
-        this.dateFinalNew = dateFinalNew;
+    public void addPictures(String url){
+        this.getPictures().add(url);
     }
 
     public double getAutoBid() {

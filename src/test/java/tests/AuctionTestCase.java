@@ -79,4 +79,34 @@ public class AuctionTestCase {
         assertTrue(!auction.getState().isClose());
     }
 
+    @Test
+    public void testSetAndGetTitleAuction(){
+        auction.setTitle("Test");
+        assertEquals("Test",auction.getTitle());
+    }
+
+    @Test
+    public void testSetAndGetAddress(){
+        auction.setAddress("Calle Test");
+        assertEquals("Calle Test",auction.getAddress());
+    }
+
+    @Test
+    public void testSetAndGetDescription(){
+        auction.setDescription("Descripcion Test");
+        assertEquals("Descripcion Test",auction.getDescription());
+    }
+
+    @Test
+    public void testSetAndGetOwner(){
+        auction.setOwner(owner2);
+        assertEquals(owner2,auction.getOwner());
+    }
+
+    @Test
+    public void testAddPictures(){
+        assertEquals(0,auction.getPictures().size());
+        auction.addPictures("http://ritmoparana.com/wp-content/uploads/2018/04/Manu-Ginobili-contra-Golden-State-4.jpg");
+        assertEquals(1,auction.getPictures().size(),0);
+    }
 }
