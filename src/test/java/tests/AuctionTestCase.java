@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static domain.AuctionBuilder.aAuction;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class AuctionTestCase {
@@ -62,6 +63,20 @@ public class AuctionTestCase {
         auction.makeABid(owner2,20);
         assertEquals(10,auction.getPriceInit(),0);
 
+    }
+
+    @Test
+    public void testInProgressAuction(){
+        DateTime dateCurrent = DateTime.now();
+        auction.setDateInit(dateCurrent);
+        auction.inProgress();
+        assertTrue(auction.getState().isInProgress());
+    }
+
+    @Test
+    public void testCloseAuction(){
+        auction.close();
+        assertTrue(!auction.getState().isClose());
     }
 
 }
