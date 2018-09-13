@@ -17,7 +17,7 @@ public class AuctionBuilder {
     private DateTime dateInit = new DateTime("2018-08-09");
     private DateTime dateFinal = new DateTime("2018-08-10");
     private LocalTime hoursFinal = LocalTime.parse("22:00:00");
-    private User owner = new User("emptyName","emptyLastName","emptyEmail",
+    private User owner = new User("emptyName","emptyLastName","emptyEmail1",
             "emptyPassword",new DateTime("1900-01-01"));
 
     public Auction build(){
