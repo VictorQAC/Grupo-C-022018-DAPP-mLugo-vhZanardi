@@ -4,7 +4,6 @@ import org.joda.time.DateTime;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import org.joda.time.DateTime;
 import java.time.temporal.ChronoUnit;
 
 public class Auction {
@@ -21,6 +20,7 @@ public class Auction {
     private User currentWinner;
     private StateAuction state;
     private double autoBid;
+    private ArrayList history;
 
     public Auction(String title, String description, String address, double priceInit, DateTime dateInit,
                    DateTime dateFinal, LocalTime hoursFinal, User owner) {
@@ -36,6 +36,7 @@ public class Auction {
         this.state = new NewAuction();
         this.autoBid = priceInit;
         this.currentWinner = owner;
+        this.history = new ArrayList<AuctionHistory>();
     }
 
     public void inProgress(){
@@ -79,17 +80,19 @@ public class Auction {
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
                 this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
-
+                this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
             } else {
 
                 this.setPriceInit(nextBid);
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
+                this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
             }
 
         } else {
 
             this.setPriceInit(nextBid);
+            this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
         }
         return;
     }
@@ -206,5 +209,29 @@ public class Auction {
 
     public void setCurrentWinner(User currentWinner) {
         this.currentWinner = currentWinner;
+    }
+
+    public ArrayList getAuctionHistory() {
+      return history;
+    }
+
+    public void addNewBid(Integer userId,DateTime date,Integer section){
+            AuctionHistory newHistory = new AuctionHistory(userId, date, section);
+            this.history.add(newHistory);
+    }
+
+    public int lastSectionNumber(){
+        int result;
+        if (this.isFirstBid()){
+            result = 0;
+        }
+        else {
+            result = ((AuctionHistory)(this.history.get(this.history.size() - 1))).getSectionNumber();
+        }
+        return result;
+    }
+
+    public Boolean isFirstBid(){
+        return this.history.size() == 0;
     }
 }
