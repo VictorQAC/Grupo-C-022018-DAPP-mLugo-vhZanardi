@@ -9,13 +9,14 @@ import org.junit.Test;
 import static domain.AuctionBuilder.aAuction;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class AuctionTestCase {
 
     private Auction auction;
     private Auction auctionMock;
     private User owner2;
+    private User ownerMock;
 
     @Before
     public void setUp() throws Exception{
@@ -23,6 +24,7 @@ public class AuctionTestCase {
         owner2 = new User("Miguel","Caneo","chinocaneo@qac.com",
                 "vamosCervecero78",new DateTime("1983-09-17"));
         auction.setState(new InProgressAuction());
+        ownerMock = mock(User.class);
     }
 
 
@@ -80,6 +82,12 @@ public class AuctionTestCase {
     }
 
     @Test
+    public void testNewAuction(){
+        assertTrue(!auction.getState().isNew());
+    }
+
+
+    @Test
     public void testSetAndGetTitleAuction(){
         auction.setTitle("Test");
         assertEquals("Test",auction.getTitle());
@@ -109,4 +117,19 @@ public class AuctionTestCase {
         auction.addPictures("http://ritmoparana.com/wp-content/uploads/2018/04/Manu-Ginobili-contra-Golden-State-4.jpg");
         assertEquals(1,auction.getPictures().size(),0);
     }
+
+    @Test
+    public void testFirstHistoryAuction(){
+        auction.makeABid(owner2,25);
+        assertEquals(1,auction.getAuctionHistory().size());
+    }
+
+    @Test
+    public void testGetSectionNumber(){
+        auction.makeABid(owner2,25);
+        auction.makeABid(ownerMock,20);
+        assertEquals(2,auction.lastSectionNumber());
+    }
+
+
 }

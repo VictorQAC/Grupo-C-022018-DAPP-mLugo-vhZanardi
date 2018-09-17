@@ -4,7 +4,6 @@ import domain.Auction;
 import domain.AuctionBuilder;
 import domain.User;
 import org.joda.time.DateTime;
-import java.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,8 +16,6 @@ public class UserTestCase {
 
     private User user;
     private User userMock;
-    private Auction auction;
-    private AuctionBuilder auctionBuilder;
 
     /**
      *
@@ -27,7 +24,6 @@ public class UserTestCase {
     public void setUp() throws Exception {
         userMock = mock(User.class);
         user = aUser().build();
-        auctionBuilder = aAuction();
 
     }
 
@@ -46,12 +42,31 @@ public class UserTestCase {
     }
 
     @Test
-    public void testCreateAuction() {
-        auction = user.createAuction("Guitarra Electrica", "Guitarra Electrica Marca: Gibson", "Lavalle 123", 3000,
-                new DateTime("2018-09-09"), new DateTime("2018-09-30"), LocalTime.parse("19:00"), user);
+    public void testNewUserCreated_WithLastName() {
+        user = aUser().withName("Jose").withLastName("Lopez").build();
+        assertEquals("Lopez", user.getLastName());
 
+    }
 
-        assertEquals("Guitarra Electrica", auction.getTitle());
+    @Test
+    public void testNewUserCreated_WithEmail() {
+        user = aUser().withName("Jose").withLastName("Lopez").withEmail("jose.lopez@gmail.com").build();
+        assertEquals("jose.lopez@gmail.com", user.getEmail());
+
+    }
+
+    @Test
+    public void testNewUserCreated_WithPassword() {
+        user = aUser().withName("Jose").withLastName("Lopez").withEmail("jose.lopez@gmail.com").withPassword("1234").build();
+        assertEquals("1234", user.getPassword());
+
+    }
+
+    @Test
+    public void testNewUserCreated_WithBirthdate() {
+        user = aUser().withName("Jose").withLastName("Lopez").withEmail("jose.lopez@gmail.com").withPassword("1234").
+                withBirthdate(new DateTime("1970-07-22")).build();
+        assertEquals(new DateTime("1970-07-22"), user.getBirthdate());
 
     }
 }
