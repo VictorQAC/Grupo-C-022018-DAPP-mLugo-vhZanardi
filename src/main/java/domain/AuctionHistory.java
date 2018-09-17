@@ -1,6 +1,9 @@
 package domain;
 
 import org.joda.time.DateTime;
+/*
+bla
+ */
 
 public class AuctionHistory {
 
