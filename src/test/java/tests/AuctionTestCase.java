@@ -1,12 +1,12 @@
 package tests;
 
-import domain.*;
+import application.domain.*;
 import org.joda.time.DateTime;
 import java.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import static domain.AuctionBuilder.aAuction;
+import static application.domain.AuctionBuilder.aAuction;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;

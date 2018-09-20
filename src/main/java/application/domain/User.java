@@ -1,16 +1,31 @@
-package domain;
+package application.domain;
 
 import org.joda.time.DateTime;
 
-import java.time.LocalTime;
+import javax.persistence.*;
 
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
     private String name;
     private String lastName;
     private String email;
     private String password;
     private DateTime birthdate;
+
+    public User(){
+
+    }
+
+    public User (String name,String lastName){
+
+        this.name = name;
+        this.lastName = lastName;
+    }
 
     public User (String name,String lastName, String email, String password, DateTime birthdate){
 
@@ -43,6 +58,13 @@ public class User {
 
     public int getId() {
         return this.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "User[id=%d, name='%s', lastName='%s']",
+                id, name, lastName);
     }
 
 }

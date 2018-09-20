@@ -1,4 +1,4 @@
-package domain;
+package application.domain;
 
 import org.joda.time.DateTime;
 
