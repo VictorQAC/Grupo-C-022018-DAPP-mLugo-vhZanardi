@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import application.repository.UserRepository;
 
+import java.util.List;
+
 @SpringBootApplication
 @RestController
 public class Application {
@@ -24,14 +26,28 @@ public class Application {
     }
 
 
-    @RequestMapping("/hello")
-    public String sayHello(){
+    @RequestMapping("/userAll")
+    public String userAll(){
 
         String res = "";
 
         for (User customer : userRepository.findAll()) {
             log.info(customer.toString());
             res = res + " " + customer.toString();
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/userFindByLastName")
+    public String userFindByLastName(){
+
+        String res = "";
+        List<User> users = userRepository.findByLastName("Bauer");
+
+        for (User user : users) {
+            log.info(users.toString());
+            res = res + " " + users.toString();
         }
 
         return res;
