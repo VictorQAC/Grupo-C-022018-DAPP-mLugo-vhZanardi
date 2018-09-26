@@ -1,6 +1,8 @@
 package application;
 
+import application.domain.Auction;
 import application.domain.User;
+import application.repository.AuctionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +22,9 @@ public class Application {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuctionRepository auctionRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
@@ -43,11 +48,37 @@ public class Application {
     public String userFindByLastName(){
 
         String res = "";
-        List<User> users = userRepository.findByLastName("Bauer");
+        List<User> users = userRepository.findByLastName("Caneo");
 
         for (User user : users) {
             log.info(users.toString());
             res = res + " " + users.toString();
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/userBirthdate")
+    public String userBirthdate(){
+
+        String res = "";
+
+        for (User customer : userRepository.findAll()) {
+            //log.info(customer.toString());
+            res = res + " " + customer.getBirthdate().getDate();
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/auctionAll")
+    public String auctionAll(){
+
+        String res = "";
+
+        for (Auction auction : auctionRepository.findAll()) {
+            log.info(auction.toString());
+            res = res + " " + auction.getOwner().toString();
         }
 
         return res;

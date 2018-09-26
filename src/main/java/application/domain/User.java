@@ -3,6 +3,7 @@ package application.domain;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class User {
@@ -15,7 +16,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private DateTime birthdate;
+    private Date birthdate;
 
     public User(){
 
@@ -27,7 +28,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public User (String name,String lastName, String email, String password, DateTime birthdate){
+    public User (String name,String lastName, String email, String password, Date birthdate){
 
         this.name = name;
         this.lastName = lastName;
@@ -52,12 +53,16 @@ public class User {
         return password;
     }
 
-    public DateTime getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public int getId() {
-        return this.hashCode();
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

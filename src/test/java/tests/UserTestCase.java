@@ -5,6 +5,8 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static application.domain.UserBuilder.aUser;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -62,7 +64,7 @@ public class UserTestCase {
     @Test
     public void testNewUserCreated_WithBirthdate() {
         user = aUser().withName("Jose").withLastName("Lopez").withEmail("jose.lopez@gmail.com").withPassword("1234").
-                withBirthdate(new DateTime("1970-07-22")).build();
+                withBirthdate(new Date(1983,8,17)).build();
         assertEquals(new DateTime("1970-07-22"), user.getBirthdate());
 
     }

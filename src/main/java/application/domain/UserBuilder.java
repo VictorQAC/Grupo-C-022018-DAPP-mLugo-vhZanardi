@@ -2,6 +2,8 @@ package application.domain;
 
 import org.joda.time.DateTime;
 
+import java.util.Date;
+
 public class UserBuilder {
     public static UserBuilder aUser(){
         return new UserBuilder();
@@ -11,7 +13,7 @@ public class UserBuilder {
     private String lastName = "emptyLastName";
     private String email = "emptyEmail";
     private String password = "emptyPassword";
-    private DateTime birthdate = new DateTime("1900-01-01");
+    private Date birthdate = new Date(1983,8,17);
 
     public User build(){
        User user = new User(name,lastName,email,password,birthdate);
@@ -38,7 +40,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder withBirthdate(final DateTime aBirthdate){
+    public UserBuilder withBirthdate(final Date aBirthdate){
         birthdate = aBirthdate;
         return this;
     }
