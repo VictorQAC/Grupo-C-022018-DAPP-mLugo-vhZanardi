@@ -78,7 +78,17 @@ public class Application {
 
         for (Auction auction : auctionRepository.findAll()) {
             log.info(auction.toString());
-            res = res + " " + auction.getOwner().toString();
+            //res = res + " " + auction.getOwner().toString();
+            res = res + "Before " + auction.toString();
+
+            auction.setTitle("Se cambio el nombre y funco");
+            auctionRepository.save(auction);
+        }
+
+        for (Auction auction : auctionRepository.findAll()) {
+            log.info(auction.toString());
+            //res = res + " " + auction.getOwner().toString();
+            res = res + " After " + auction.toString();
         }
 
         return res;

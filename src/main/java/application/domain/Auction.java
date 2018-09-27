@@ -22,18 +22,27 @@ public class Auction {
     private Date dateInit;
     private Date dateFinal;
     private LocalTime hoursFinal;
+
     @OneToOne(
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private User owner;
+
     @OneToOne(
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private User currentWinner;
-    //private StateAuction state;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private StateAuction state;
+
     private double autoBid;
+
     @OneToMany(
             cascade = CascadeType.ALL
     )

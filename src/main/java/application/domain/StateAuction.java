@@ -1,12 +1,31 @@
 package application.domain;
 
-public interface StateAuction {
+import javax.persistence.*;
 
-    public void update(Auction auction);
+@Entity
+public class StateAuction {
 
-    public Boolean isClose();
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-    public Boolean isInProgress();
+    public Boolean isClose(){
+        return false;
+    }
 
-    public Boolean isNew();
+    public Boolean isInProgress(){
+        return false;
+    }
+
+    public Boolean isNew(){
+        return false;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

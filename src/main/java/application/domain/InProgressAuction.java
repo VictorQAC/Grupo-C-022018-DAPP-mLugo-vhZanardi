@@ -1,11 +1,10 @@
 package application.domain;
 
-public class InProgressAuction implements StateAuction{
+import javax.persistence.*;
 
-    @Override
-    public void update(Auction auction) {
+@Entity
+public class InProgressAuction extends StateAuction{
 
-    }
 
     @Override
     public Boolean isClose() {
@@ -20,5 +19,10 @@ public class InProgressAuction implements StateAuction{
     @Override
     public Boolean isNew() {
         return false;
+    }
+
+    @Override
+    public Long getId() {
+        return super.getId();
     }
 }
