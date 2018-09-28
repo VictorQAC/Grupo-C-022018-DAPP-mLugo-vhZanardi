@@ -13,7 +13,7 @@ public class UserBuilder {
     private String lastName = "emptyLastName";
     private String email = "emptyEmail";
     private String password = "emptyPassword";
-    private Date birthdate = new Date(1983,8,17);
+    private DateTime birthdate = new DateTime("1983-8-17");
 
     public User build(){
        User user = new User(name,lastName,email,password,birthdate);
@@ -40,7 +40,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder withBirthdate(final Date aBirthdate){
+    public UserBuilder withBirthdate(final DateTime aBirthdate){
         birthdate = aBirthdate;
         return this;
     }

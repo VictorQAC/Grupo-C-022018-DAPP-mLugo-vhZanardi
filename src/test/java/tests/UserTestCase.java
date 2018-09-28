@@ -64,8 +64,9 @@ public class UserTestCase {
     @Test
     public void testNewUserCreated_WithBirthdate() {
         user = aUser().withName("Jose").withLastName("Lopez").withEmail("jose.lopez@gmail.com").withPassword("1234").
-                withBirthdate(new Date(1983,8,17)).build();
-        assertEquals(new DateTime("1970-07-22"), user.getBirthdate());
+                withBirthdate(new DateTime("1983-08-17")).build();
+        assertEquals(new DateTime("1983-08-17"), user.getBirthdate());
 
     }
+
 }

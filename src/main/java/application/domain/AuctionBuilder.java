@@ -15,14 +15,14 @@ public class AuctionBuilder {
     private String description = "Esto es un builder de una subasta";
     private String address = "Calle Falsa 123";
     private double priceInit = 10;
-    private Date dateInit = new Date(2018,7,9);
-    private Date dateFinal = new Date(2018,7,10);
+    private DateTime dateInit = new DateTime("2018-7-9");
+    private DateTime dateFinal = new DateTime("2018-7-10");
     private LocalTime hoursFinal = LocalTime.parse("22:00:00");
     private User owner = new User("emptyName","emptyLastName","emptyEmail",
-            "emptyPassword",new Date(1983,8,17));
+            "emptyPassword",new DateTime("1983-8-17"));
     public Auction build(){
 
-        Auction auction = new Auction(title,description,address,priceInit,dateInit,dateFinal,hoursFinal);
+        Auction auction = new Auction(title,description,address,priceInit,dateInit,dateFinal,hoursFinal,owner);
         return auction;
 
     }

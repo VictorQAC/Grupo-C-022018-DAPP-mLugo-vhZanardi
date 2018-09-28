@@ -1,9 +1,11 @@
 package application.domain;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Random;
 
 @Entity
 public class User {
@@ -16,20 +18,11 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private Date birthdate;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime birthdate;
 
-    public User(){
-
-    }
-
-    public User (String name,String lastName){
-
-        this.name = name;
-        this.lastName = lastName;
-    }
-
-    public User (String name,String lastName, String email, String password, Date birthdate){
-
+    public User (String name,String lastName, String email, String password, DateTime birthdate){
+        this.id = new Random().nextLong();
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -53,16 +46,12 @@ public class User {
         return password;
     }
 
-    public Date getBirthdate() {
+    public DateTime getBirthdate() {
         return birthdate;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

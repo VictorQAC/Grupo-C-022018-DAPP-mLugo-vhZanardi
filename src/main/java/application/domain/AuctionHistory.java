@@ -1,5 +1,7 @@
 package application.domain;
 
+import org.joda.time.DateTime;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,11 +18,11 @@ public class AuctionHistory {
 
     private long userId;
 
-    private Date date;
+    private DateTime date;
 
     private Integer sectionNumber;
 
-    public AuctionHistory(long id, Date date,Integer section){
+    public AuctionHistory(long id, DateTime date,Integer section){
         this.userId = id;
         this.date = date;
         this.sectionNumber = section;
@@ -30,19 +32,4 @@ public class AuctionHistory {
         return sectionNumber;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 }

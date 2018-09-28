@@ -29,11 +29,11 @@ public class UserConfig {
             repository.save(new User("Michelle", "Dessler"));*/
 
             repository.save(new User("Miguel","Caneo","chinocaneo@qac.com",
-                    "vamosCervecero78",new Date(1983,8,17)));
+                    "vamosCervecero78",new DateTime("1983-8-17")));
             repository.save(new User("Martin","Cauterruccio","caute07@qac.com",
-                    "vamosCervecero79",new Date(1984,9,01)));
+                    "vamosCervecero79",new DateTime("1984-9-01")));
             repository.save(new User("Rodrigo","Brania","chapu18@qac.com",
-                    "vamosCervecero80",new Date(1985,10,22)));
+                    "vamosCervecero80",new DateTime("1985-10-22")));
         };
     }
 
@@ -43,11 +43,11 @@ public class UserConfig {
             // save a couple of customers
 
             User user = new User("Miguel","Caneo","chinocaneo@qac.com",
-                    "vamosCervecero78",new Date(1983,8,17));
+                    "vamosCervecero78",new DateTime("1983-8-17"));
 
             repository.save(new Auction("Auction 1","Subasta de prueba",
-                    "Calle Falsa 123",10,new Date(2018,8,25),
-                    new Date(2018,8,27),LocalTime.parse("22:00:00"),user));
+                    "Calle Falsa 123",10,new DateTime("2018-8-25"),
+                    new DateTime("2018-8-27"),LocalTime.parse("22:00:00"),user));
         };
     }
 }

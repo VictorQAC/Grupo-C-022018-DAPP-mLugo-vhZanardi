@@ -24,16 +24,16 @@ public class AuctionTestCase {
     public void setUp() throws Exception{
         auction = aAuction().build();
         owner2 = new User("Miguel","Caneo","chinocaneo@qac.com",
-                "vamosCervecero78",new Date(1983,8,17));
-        //auction.setState(new InProgressAuction());
+                "vamosCervecero78",new DateTime("1983-8-17"));
         ownerMock = mock(User.class);
     }
 
 
-    /*@Test
+    @Test
     public void testUserBidInAuctionInWhickHeNotIsOwner(){
 
         assertEquals(10,auction.getPriceInit(),0);
+        auction.setState(new InProgressAuction());
         auction.makeABid(owner2,20);
         assertEquals(10.5,auction.getPriceInit(),0);
     }
@@ -41,6 +41,7 @@ public class AuctionTestCase {
     @Test
     public void testUserBidInAuctionInWhickHeIsOwner(){
         assertEquals(10,auction.getPriceInit(),0);
+        auction.setState(new InProgressAuction());
         auction.makeABid(owner2,20);
         assertEquals(10.5,auction.getPriceInit(),0);
         auction.makeABid(owner2,20);
@@ -54,6 +55,7 @@ public class AuctionTestCase {
         auction.setHoursFinal(extendsFiveMinutes);
         LocalTime extendFiveMinutes = auction.getHoursFinal().plusMinutes(5);
         assertEquals(10,auction.getPriceInit(),0);
+        auction.setState(new InProgressAuction());
         auction.makeABid(owner2,20);
         assertEquals(10.5,auction.getPriceInit(),0);
         assertEquals(extendFiveMinutes,auction.getHoursFinal());
@@ -85,7 +87,7 @@ public class AuctionTestCase {
 
     @Test
     public void testNewAuction(){
-        assertTrue(!auction.getState().isNew());
+        assertTrue(auction.getState().isNew());
     }
 
 
@@ -122,16 +124,24 @@ public class AuctionTestCase {
 
     @Test
     public void testFirstHistoryAuction(){
+        auction.setState(new InProgressAuction());
         auction.makeABid(owner2,25);
         assertEquals(1,auction.getAuctionHistory().size());
     }
 
     @Test
     public void testGetSectionNumber(){
+        auction.setState(new InProgressAuction());
         auction.makeABid(owner2,25);
         auction.makeABid(ownerMock,20);
         assertEquals(2,auction.lastSectionNumber());
-    }*/
+    }
+
+    @Test
+    public void testAuction_toString(){
+
+        assertEquals("Auction[id=null, title='Builder Auction', description='Esto es un builder de una subasta']",auction.toString());
+    }
 
 
 }

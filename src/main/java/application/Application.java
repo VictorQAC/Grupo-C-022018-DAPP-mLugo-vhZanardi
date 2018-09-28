@@ -65,7 +65,7 @@ public class Application {
 
         for (User customer : userRepository.findAll()) {
             //log.info(customer.toString());
-            res = res + " " + customer.getBirthdate().getDate();
+            res = res + " " + customer.getBirthdate();
         }
 
         return res;

@@ -1,10 +1,12 @@
 package application.domain;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,8 +21,10 @@ public class Auction {
     private String address;
     private ArrayList<String> pictures;
     private double priceInit;
-    private Date dateInit;
-    private Date dateFinal;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateInit;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateFinal;
     private LocalTime hoursFinal;
 
     @OneToOne(
@@ -49,27 +53,8 @@ public class Auction {
     @JoinColumn(name = "auctionhistory_id")
     private List<AuctionHistory> history;
 
-    public Auction(){
-
-    }
-
-    public Auction(String title, String description, String address, double priceInit, Date dateInit,
-                   Date dateFinal, LocalTime hoursFinal) {
-        this.title = title;
-        this.description = description;
-        this.address = address;
-        this.pictures = new ArrayList<String>();
-        this.priceInit = priceInit;
-        this.dateInit = dateInit;
-        this.dateFinal = dateFinal;
-        this.hoursFinal = hoursFinal;
-        //this.state = new NewAuction();
-        this.autoBid = priceInit;
-        //this.history = new ArrayList<AuctionHistory>();
-    }
-
-    public Auction(String title, String description, String address, double priceInit, Date dateInit,
-                   Date dateFinal, LocalTime hoursFinal, User owner) {
+    public Auction(String title, String description, String address, double priceInit, DateTime dateInit,
+                   DateTime dateFinal, LocalTime hoursFinal, User owner) {
         this.title = title;
         this.description = description;
         this.address = address;
@@ -79,13 +64,13 @@ public class Auction {
         this.dateFinal = dateFinal;
         this.hoursFinal = hoursFinal;
         this.owner = owner;
-        //this.state = new NewAuction();
+        this.state = new NewAuction();
         this.autoBid = priceInit;
         this.currentWinner = owner;
         this.history = new ArrayList<>();
     }
 
-    /*public void inProgress(){
+    public void inProgress(){
 
         DateTime dateCurrent = DateTime.now();
         LocalTime timeCurrent = LocalTime.now();
@@ -108,9 +93,9 @@ public class Auction {
 
     public Boolean isCurrentWinner(User user){
         return user.getName() == this.getCurrentWinner().getName();
-    }*/
+    }
 
-    /*public void makeABid(User user, double autoBid){
+    public void makeABid(User user, double autoBid){
 
         double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
 
@@ -141,7 +126,7 @@ public class Auction {
             this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
         }
         return;
-    }*/
+    }
 
     public Boolean fiveMinutesLeftToFinish(){
 
@@ -150,13 +135,13 @@ public class Auction {
         return res < 5;
     }
 
-    /*public Boolean exceeds48Hours(){
+    public Boolean exceeds48Hours(){
 
         DateTime extendTwoDays = this.getDateFinal().plusDays(2);
         DateTime dateCurrent = DateTime.now();
 
         return dateCurrent.equals(extendTwoDays);
-    }*/
+    }
 
     public void addPictures(String url){
         this.getPictures().add(url);
@@ -209,19 +194,19 @@ public class Auction {
         this.priceInit = priceInit;
     }
 
-    public Date getDateInit() {
+    public DateTime getDateInit() {
         return dateInit;
     }
 
-    public void setDateInit(Date dateInit) {
+    public void setDateInit(DateTime dateInit) {
         this.dateInit = dateInit;
     }
 
-    public Date getDateFinal() {
+    public DateTime getDateFinal() {
         return dateFinal;
     }
 
-    public void setDateFinal(Date dateFinal) {
+    public void setDateFinal(DateTime dateFinal) {
         this.dateFinal = dateFinal;
     }
 
@@ -240,7 +225,7 @@ public class Auction {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-/*
+
     public StateAuction getState() {
         return state;
     }
@@ -257,9 +242,9 @@ public class Auction {
         this.currentWinner = currentWinner;
     }
 
-    public ArrayList getAuctionHistory() {
+    public List<AuctionHistory> getAuctionHistory() {
       return history;
-    }*/
+    }
 
     public Long getId() {
         return id;
@@ -269,7 +254,7 @@ public class Auction {
         this.id = id;
     }
 
-    /*public void addNewBid(long userId,DateTime date,Integer section){
+    public void addNewBid(long userId,DateTime date,Integer section){
             AuctionHistory newHistory = new AuctionHistory(userId, date, section);
             this.history.add(newHistory);
     }
@@ -287,7 +272,7 @@ public class Auction {
 
     public Boolean isFirstBid(){
         return this.history.size() == 0;
-    }*/
+    }
 
     @Override
     public String toString() {
