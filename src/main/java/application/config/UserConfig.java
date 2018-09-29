@@ -43,11 +43,11 @@ public class UserConfig {
             // save a couple of customers
 
             User user = new User("Miguel","Caneo","chinocaneo@qac.com",
-                    "vamosCervecero78",new DateTime("1983-8-17"));
+                    "vamosCervecero78",new DateTime("1983-08-17"));
 
             repository.save(new Auction("Auction 1","Subasta de prueba",
-                    "Calle Falsa 123",10,new DateTime("2018-8-25"),
-                    new DateTime("2018-8-27"),LocalTime.parse("22:00:00"),user));
+                    "Calle Falsa 123",10,new DateTime("2018-08-25"),
+                    new DateTime("2018-08-27"),LocalTime.parse("22:00:00"),user));
         };
     }
 }

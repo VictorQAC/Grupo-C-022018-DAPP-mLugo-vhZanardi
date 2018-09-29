@@ -34,7 +34,7 @@ public class AuctionTestCase {
 
         assertEquals(10,auction.getPriceInit(),0);
         auction.setState(new InProgressAuction());
-        auction.makeABid(owner2,20);
+        auction.makeABid(ownerMock,20);
         assertEquals(10.5,auction.getPriceInit(),0);
     }
 
@@ -42,9 +42,9 @@ public class AuctionTestCase {
     public void testUserBidInAuctionInWhickHeIsOwner(){
         assertEquals(10,auction.getPriceInit(),0);
         auction.setState(new InProgressAuction());
-        auction.makeABid(owner2,20);
+        auction.makeABid(ownerMock,20);
         assertEquals(10.5,auction.getPriceInit(),0);
-        auction.makeABid(owner2,20);
+        auction.makeABid(ownerMock,20);
         assertEquals(10.5,auction.getPriceInit(),0);
     }
 
@@ -56,7 +56,7 @@ public class AuctionTestCase {
         LocalTime extendFiveMinutes = auction.getHoursFinal().plusMinutes(5);
         assertEquals(10,auction.getPriceInit(),0);
         auction.setState(new InProgressAuction());
-        auction.makeABid(owner2,20);
+        auction.makeABid(ownerMock,20);
         assertEquals(10.5,auction.getPriceInit(),0);
         assertEquals(extendFiveMinutes,auction.getHoursFinal());
     }
@@ -66,7 +66,7 @@ public class AuctionTestCase {
 
         assertEquals(10,auction.getPriceInit(),0);
         auction.setState(new CloseAuction());
-        auction.makeABid(owner2,20);
+        auction.makeABid(ownerMock,20);
         assertEquals(10,auction.getPriceInit(),0);
 
     }
@@ -111,8 +111,8 @@ public class AuctionTestCase {
 
     @Test
     public void testSetAndGetOwner(){
-        auction.setOwner(owner2);
-        assertEquals(owner2,auction.getOwner());
+        auction.setOwner(ownerMock);
+        assertEquals(ownerMock,auction.getOwner());
     }
 
     @Test
@@ -125,15 +125,16 @@ public class AuctionTestCase {
     @Test
     public void testFirstHistoryAuction(){
         auction.setState(new InProgressAuction());
-        auction.makeABid(owner2,25);
+        auction.makeABid(ownerMock,25);
         assertEquals(1,auction.getAuctionHistory().size());
     }
 
     @Test
     public void testGetSectionNumber(){
         auction.setState(new InProgressAuction());
-        auction.makeABid(owner2,25);
         auction.makeABid(ownerMock,20);
+        owner2.setId(123L);
+        auction.makeABid(owner2,25);
         assertEquals(2,auction.lastSectionNumber());
     }
 

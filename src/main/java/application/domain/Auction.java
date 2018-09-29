@@ -53,6 +53,8 @@ public class Auction {
     @JoinColumn(name = "auctionhistory_id")
     private List<AuctionHistory> history;
 
+    public Auction(){};
+
     public Auction(String title, String description, String address, double priceInit, DateTime dateInit,
                    DateTime dateFinal, LocalTime hoursFinal, User owner) {
         this.title = title;
@@ -208,6 +210,10 @@ public class Auction {
 
     public void setDateFinal(DateTime dateFinal) {
         this.dateFinal = dateFinal;
+    }
+
+    public void setHistory(List<AuctionHistory> history) {
+        this.history = history;
     }
 
     public LocalTime getHoursFinal() {
