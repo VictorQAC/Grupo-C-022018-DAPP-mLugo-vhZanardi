@@ -23,6 +23,11 @@ public class User {
 
     public User (){};
 
+    public User (String name, String lastName){
+        this.name = name;
+        this.lastName = lastName;
+    };
+
     public User (String name, String lastName, String email, String password, DateTime birthdate){
         //this.id = new Random().nextLong();
         this.name = name;

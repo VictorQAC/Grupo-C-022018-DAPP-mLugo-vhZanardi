@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.Optional;
 
 @Configuration
 @EnableAutoConfiguration
@@ -21,12 +22,6 @@ public class UserConfig {
     @Bean
     public CommandLineRunner demo(UserRepository repository) {
         return (args) -> {
-            // save a couple of customers
-            /*repository.save(new User("Jack", "Bauer"));
-            repository.save(new User("Chloe", "O'Brian"));
-            repository.save(new User("Kim", "Bauer"));
-            repository.save(new User("David", "Palmer"));
-            repository.save(new User("Michelle", "Dessler"));*/
 
             repository.save(new User("Miguel","Caneo","chinocaneo@qac.com",
                     "vamosCervecero78",new DateTime("1983-8-17")));
@@ -40,7 +35,6 @@ public class UserConfig {
     @Bean
     public CommandLineRunner demo1(AuctionRepository repository) {
         return (args) -> {
-            // save a couple of customers
 
             User user = new User("Miguel","Caneo","chinocaneo@qac.com",
                     "vamosCervecero78",new DateTime("1983-08-17"));
