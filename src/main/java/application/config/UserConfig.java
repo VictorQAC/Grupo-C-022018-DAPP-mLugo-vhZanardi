@@ -36,7 +36,7 @@ public class UserConfig {
     public CommandLineRunner demo1(AuctionRepository repository) {
         return (args) -> {
 
-            User user = new User("Miguel","Caneo","chinocaneo@qac.com",
+            User user = new User("Facundo","Diz","chinocaneo@qac.com",
                     "vamosCervecero78",new DateTime("1983-08-17"));
 
             repository.save(new Auction("Auction 1","Subasta de prueba",

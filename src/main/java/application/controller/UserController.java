@@ -5,6 +5,9 @@ import application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 
 @RestController
 public class UserController {
@@ -34,6 +37,13 @@ public class UserController {
         }
 
         return res;
+    }
+
+    @GetMapping("/good-users")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Collection<User> goodBeers() {
+        return (Collection<User>) repository.findAll().stream()
+                .collect(Collectors.toList());
     }
 
 }
