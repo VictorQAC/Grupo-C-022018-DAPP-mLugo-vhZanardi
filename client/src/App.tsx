@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './App.css';
-import UserList from './UserList';
+import AuctionList from './AuctionList';
 
-import logo from './logo.svg';
+import logo from './logo_subastas.png';
 
 class App extends React.Component<{}, any> {
     render() {
@@ -10,9 +10,9 @@ class App extends React.Component<{}, any> {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome to React</h1>
+                    <h1 className="App-title">Subastas Locas Papai !!!</h1>
                 </header>
-                <UserList/>
+                <AuctionList/>
             </div>
         );
     }

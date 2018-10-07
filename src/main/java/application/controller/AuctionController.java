@@ -4,6 +4,8 @@ import application.domain.Auction;
 import application.repository.AuctionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @RestController
 public class AuctionController {
@@ -26,6 +28,13 @@ public class AuctionController {
         }
 
         return res;
+    }
+
+    @GetMapping("/auctionList")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Collection<Auction> auctionList() {
+        return (Collection<Auction>) repository.findAll().stream()
+                .collect(Collectors.toList());
     }
 
 
