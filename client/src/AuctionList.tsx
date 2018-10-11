@@ -13,7 +13,7 @@ interface AuctionListProps {
 }
 
 interface AuctionListState  {
-    users: Array<Auction>;
+    auctions: Array<Auction>;
     isLoading: boolean;
 }
 
@@ -23,7 +23,7 @@ class AuctionList extends React.Component<AuctionListProps, AuctionListState> {
         super(props);
 
         this.state = {
-            users: [],
+            auctions: [],
             isLoading: false
         };
     }
@@ -33,12 +33,12 @@ class AuctionList extends React.Component<AuctionListProps, AuctionListState> {
 
         fetch('http://localhost:8080/auctionList')
             .then(response => response.json())
-            .then(data => this.setState({users: data, isLoading: false}));
+            .then(data => this.setState({auctions: data, isLoading: false}));
     }
 
     render() {
 
-        const {users, isLoading} = this.state;
+        const {auctions, isLoading} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -47,7 +47,7 @@ class AuctionList extends React.Component<AuctionListProps, AuctionListState> {
         return (
             <div>
                 <div className="row center-xs">
-                {users.map((auction: Auction) =>
+                {auctions.map((auction: Auction) =>
                     <div key={auction.id}>
                         <div className="col-xs-10 col-sm-6 col-md-4 product">
                             <img src={auction.pictures} alt={auction.title}/>

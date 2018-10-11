@@ -37,5 +37,12 @@ public class AuctionController {
                 .collect(Collectors.toList());
     }
 
+    @PostMapping(path ="/auctionCreate",consumes = "application/json")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public void auctionCreate(@RequestBody Auction auction) {
+
+        repository.save(auction);
+
+    }
 
 }
