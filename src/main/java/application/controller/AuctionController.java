@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.dto.AuctionDTO;
 import application.domain.Auction;
 import application.repository.AuctionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +32,19 @@ public class AuctionController {
     }
 
     @GetMapping("/auctionList")
-    @CrossOrigin(origins = "http://localhost:3000")
     public Collection<Auction> auctionList() {
         return (Collection<Auction>) repository.findAll().stream()
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(path ="/auctionCreate",consumes = "application/json")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public void auctionCreate(@RequestBody Auction auction) {
+    @PostMapping(path ="/auctionCreate")
+    public void auctionCreate(@RequestBody AuctionDTO auction) {
 
-        repository.save(auction);
+        Auction a = new Auction();
+        a.setTitle(auction.getTitle());
+        a.setDescription(auction.getDescription());
+        a.setPriceInit(auction.getPriceInit());
+        repository.save(a);
 
     }
-
 }
