@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
+import Popup from "reactjs-popup";
 
 
 class AuctionCreate extends React.Component {
@@ -36,18 +37,20 @@ class AuctionCreate extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="title">Enter Title</label>
-                <input id="title" name="title" type="text" value={this.state.auction.title} onChange={this.updateState.bind(this,'title')}/>
+            <Popup trigger={<button> New Auction?</button>} position="right center">
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="title">Title</label>
+                    <input id="title" name="title" type="text" value={this.state.auction.title} onChange={this.updateState.bind(this,'title')}/>
 
-                <label htmlFor="description">Enter Description</label>
-                <input id="description" name="description" value={this.state.auction.description} type="text"  onChange={this.updateState.bind(this,'description')}/>
+                    <label htmlFor="description">Description</label>
+                    <input id="description" name="description" value={this.state.auction.description} type="text"  onChange={this.updateState.bind(this,'description')}/>
 
-                <label htmlFor="priceInit">Enter Price Intit</label>
-                <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
+                    <label htmlFor="priceInit">Price Init</label>
+                    <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
 
-                <button>Send data!</button>
-            </form>
+                    <button>Create Aution</button>
+                </form>
+            </Popup>
         );
     }
 }

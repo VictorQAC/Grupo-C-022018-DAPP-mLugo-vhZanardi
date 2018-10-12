@@ -31,7 +31,7 @@ class AuctionList extends React.Component {
 
         return (
             <div>
-                <div className="row center-xs">
+                <div class="items">
                     {auctions.map((auction) =>
                         <div key={auction.id}>
                             <div className="col-xs-10 col-sm-6 col-md-4 product">

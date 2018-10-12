@@ -14,7 +14,7 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <a
-            className="App-link"
+            clasReactsName="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
@@ -23,6 +23,7 @@ class App extends Component {
           </a>
         </header>
           <AuctionCreate/>
+          <br/>
           <AuctionList/>
       </div>
     );
