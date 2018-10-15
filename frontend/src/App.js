@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo_subastas.png';
 import './App.css';
 import './Button.css';
 import AuctionList from './AuctionList';
@@ -10,8 +10,8 @@ class App extends Component {
     render() {
         const {t, i18n} = this.props;
         return (
-            <header className="App-header">
                 <div className="App">
+                    <header className="App-header">
                   <div style={{marginLeft:1220}}>
                     <button onClick={() => i18n.changeLanguage('es')} style={{backgroundColor:"#1fc7ff",marginTop:0,marginRight:10}}>Español
                     </button>
@@ -27,19 +27,12 @@ class App extends Component {
                             Edit <code>src/App.js</code> and save to reload.
                         </Trans>
                     </p>
-                    <a
-                        clasReactsName="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
+                    </header>
+                    <AuctionCreate/>
+                    <br/>
+                    <br/>
+                    <AuctionList/>
                 </div>
-                <AuctionCreate/>
-                <br/>
-                <AuctionList/>
-            </header>
         );
 
     }

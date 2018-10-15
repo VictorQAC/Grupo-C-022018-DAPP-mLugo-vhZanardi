@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import './AuctionList.css';
+import axios from 'axios';
+import Popup from "reactjs-popup";
 
 class AuctionList extends React.Component {
 
@@ -21,6 +23,11 @@ class AuctionList extends React.Component {
             .then(data => this.setState({auctions: data, isLoading: false}));
     }
 
+    delete(id){
+        console.log(id);
+        axios.delete('http://localhost:3000/api/auctionDelete/'+id);
+    }
+
     render() {
 
         const {auctions, isLoading} = this.state;
@@ -38,6 +45,17 @@ class AuctionList extends React.Component {
                                 <img src={auction.pictures} alt={auction.title}/>
                                 <h3>{auction.title}</h3>
                                 <p>{"Precio:" + auction.priceInit}</p>
+
+                                <Popup trigger={<button> Remove Auction </button>} position="right center">
+
+                                    <label htmlFor="description">You are sure you want to delete the auction?</label>
+
+                                    <button onClick={this.delete.bind(this, auction.id)}
+                                            className="btn btn-danger">Yes
+                                    </button>
+
+                                </Popup>
+
                             </div>
                         </div>
                     )}

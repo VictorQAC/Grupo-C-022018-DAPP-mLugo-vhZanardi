@@ -47,4 +47,10 @@ public class AuctionController {
         repository.save(a);
 
     }
+
+
+    @RequestMapping(method=RequestMethod.DELETE, path="/auctionDelete/{id}")
+    public void delete(@PathVariable String id) {
+        repository.deleteById(Long.parseLong(id));
+    }
 }
