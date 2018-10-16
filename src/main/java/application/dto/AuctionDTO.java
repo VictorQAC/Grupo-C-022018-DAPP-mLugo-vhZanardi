@@ -7,6 +7,7 @@ public class AuctionDTO{
     private String title;
     private String description;
     private double priceInit;
+    private String picture;
 
 
     public AuctionDTO() {
@@ -34,5 +35,13 @@ public class AuctionDTO{
 
     public void setPriceInit(double priceInit) {
         this.priceInit = priceInit;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

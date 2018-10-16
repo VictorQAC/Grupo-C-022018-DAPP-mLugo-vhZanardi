@@ -9,24 +9,18 @@ class AuctionCreate extends React.Component {
         super(props);
         this.state = {
             auction:{
-            title:undefined,
+                title:undefined,
                 description: undefined,
-                priceInit: undefined
+                priceInit: undefined,
+                picture: undefined
             }
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        //this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(event){
         event.preventDefault();
-        console.log(this.state.auction);
         axios.post('http://localhost:3000/api/auctionCreate',this.state.auction);
-        /*fetch('http://localhost:3000/api/auctionCreate', {
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(this.state.auction)
-        });*/
     }
 
     updateState = (name,event) => {
@@ -47,6 +41,9 @@ class AuctionCreate extends React.Component {
 
                     <label htmlFor="priceInit">Price Init</label>
                     <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
+
+                    <label htmlFor="picture">Photo Url</label>
+                    <input id="picture" name="picture" value={this.state.auction.picture} type="text" onChange={this.updateState.bind(this,'picture')} />
 
                     <button>Create Aution</button>
                 </form>

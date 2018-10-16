@@ -19,7 +19,7 @@ public class Auction {
     private String title;
     private String description;
     private String address;
-    private ArrayList<String> pictures;
+    private ArrayList<String> pictures = new ArrayList<String>();
     private double priceInit;
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime dateInit;

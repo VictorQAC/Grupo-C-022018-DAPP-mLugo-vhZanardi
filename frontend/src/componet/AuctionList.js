@@ -3,6 +3,7 @@ import * as React from 'react';
 import './AuctionList.css';
 import axios from 'axios';
 import Popup from "reactjs-popup";
+import AuctionEdit from './AuctionEdit';
 
 class AuctionList extends React.Component {
 
@@ -55,7 +56,8 @@ class AuctionList extends React.Component {
                                     </button>
 
                                 </Popup>
-
+                                <br/>
+                                <AuctionEdit id={auction.id}/>
                             </div>
                         </div>
                     )}

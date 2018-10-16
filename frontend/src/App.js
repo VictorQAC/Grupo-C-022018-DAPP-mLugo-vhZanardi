@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo_subastas.png';
 import './App.css';
 import './Button.css';
-import AuctionList from './AuctionList';
-import AuctionCreate from './AuctionCreate';
+import AuctionList from './componet/AuctionList';
+import AuctionCreate from './componet/AuctionCreate';
 import { translate, Trans } from 'react-i18next'
 
 class App extends Component {
