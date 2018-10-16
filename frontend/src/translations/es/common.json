@@ -2,5 +2,23 @@
   "welcome": {
     "title": "Bienvenido",
     "intro": "Subastas Locas Papa!!!"
+  },
+
+  "button": {
+    "auction": "Nueva Subasta",
+    "createAuction": "Crear Subasta",
+    "price": "Precio",
+    "edit" : "Editar",
+    "editAuction" : "Editar Subasta",
+    "removeAuction" : "Eliminar Subasta"
+  },
+
+  "auction":{
+    "titleAuction" : "Título",
+    "descriptionAuction" : "Descripción",
+    "priceAuction" : "Precio Inicial",
+    "url" : "Url Foto",
+    "text" : "Esta seguro que desea eliminar la subasta?",
+    "yes" : "Si"
   }
 }

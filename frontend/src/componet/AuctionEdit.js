@@ -1,6 +1,7 @@
 import * as React from 'react';
 import axios from "axios/index";
 import Popup from "reactjs-popup";
+import {Trans} from "react-i18next";
 
 class AuctionEdit extends React.Component {
 
@@ -35,23 +36,23 @@ class AuctionEdit extends React.Component {
     render() {
 
         return (
-            <Popup trigger={<button> Edit </button>} position="right center">
+            <Popup trigger={<button><Trans i18nKey="button.editAuction">Edit</Trans> </button>} position="right center">
 
                 <form onSubmit={this.handleSubmit}>
 
-                    <label htmlFor="title">Title</label>
+                    <Trans i18nKey="auction.titleAuction"><label htmlFor="title">Title</label></Trans>
                     <input id="title" name="title" type="text" value={this.state.auction.title} onChange={this.updateState.bind(this,'title')}/>
 
-                    <label htmlFor="description">Description</label>
+                    <Trans i18nKey ="auction.descriptionAuction"><label htmlFor="description">Description</label></Trans>
                     <input id="description" name="description" value={this.state.auction.description} type="text"  onChange={this.updateState.bind(this,'description')}/>
 
-                    <label htmlFor="priceInit">Price Init</label>
+                    <Trans i18nKey = "auction.priceAuction"> <label htmlFor="priceInit">Price Init</label></Trans>
                     <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
 
-                    <label htmlFor="picture">Photo Url</label>
+                    <Trans i18nKey = "auction.url"> <label htmlFor="picture">Photo Url</label></Trans>
                     <input id="picture" name="picture" value={this.state.auction.pictures} type="text" onChange={this.updateState.bind(this,'picture')} />
 
-                    <button>Edit Auction</button>
+                    <button><Trans i18nKey='button.edit'>Edit Auction</Trans></button>
 
                 </form>
 

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo_subastas.png';
 import './App.css';
 import './Button.css';
+
 import AuctionList from './componet/AuctionList';
 import AuctionCreate from './componet/AuctionCreate';
+import AuctionMap from './componet/AuctionMap';
 import { translate, Trans } from 'react-i18next'
 
 class App extends Component {
     render() {
-        const {t, i18n} = this.props;
+        const {i18n} = this.props;
         return (
                 <div className="App">
                     <header className="App-header">
@@ -32,7 +34,10 @@ class App extends Component {
                     <br/>
                     <br/>
                     <AuctionList/>
+                    <br/>
+                    <AuctionMap/>
                 </div>
+
         );
 
     }

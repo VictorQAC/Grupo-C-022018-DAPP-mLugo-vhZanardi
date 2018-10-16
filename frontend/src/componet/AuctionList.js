@@ -4,6 +4,7 @@ import './AuctionList.css';
 import axios from 'axios';
 import Popup from "reactjs-popup";
 import AuctionEdit from './AuctionEdit';
+import { translate, Trans } from 'react-i18next'
 
 class AuctionList extends React.Component {
 
@@ -45,14 +46,14 @@ class AuctionList extends React.Component {
                             <div className="col-xs-10 col-sm-6 col-md-4 product">
                                 <img src={auction.pictures} alt={auction.title}/>
                                 <h3>{auction.title}</h3>
-                                <p>{"Precio:" + auction.priceInit}</p>
+                                <p><Trans i18nKey='button.price'>Price</Trans> {": " + auction.priceInit}</p>
+                                <Popup trigger={<button> <Trans i18nKey="button.removeAuction">Remove Auction</Trans> </button>} position="right center">
 
-                                <Popup trigger={<button> Remove Auction </button>} position="right center">
-
-                                    <label htmlFor="description">You are sure you want to delete the auction?</label>
+                                    <Trans i18nKey='auction.text'><label htmlFor="description">You are sure you want to delete the auction?</label></Trans>
 
                                     <button onClick={this.delete.bind(this, auction.id)}
-                                            className="btn btn-danger">Yes
+                                            className="btn btn-danger">
+                                        <Trans i18nKey='auction.yes'>Yes</Trans>
                                     </button>
 
                                 </Popup>
@@ -67,4 +68,5 @@ class AuctionList extends React.Component {
     }
 }
 
-export default AuctionList;
+export default translate('common')(AuctionList);
+//export default AuctionList;
