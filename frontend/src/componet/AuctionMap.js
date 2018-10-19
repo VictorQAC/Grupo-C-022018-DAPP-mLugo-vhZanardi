@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {GoogleApiWrapper, InfoWindow, Map, Marker, Polygon} from 'google-maps-react';
 
-import Paper from 'material-ui/Paper';
-import Typography from '@material-ui/core/Typography';
-import { typography } from 'material-ui/styles';
-
 export class MapContainer extends Component {
     state = {
         showingInfoWindow: false,
