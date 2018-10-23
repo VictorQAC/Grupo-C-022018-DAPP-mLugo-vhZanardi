@@ -5,6 +5,7 @@ import axios from 'axios';
 import Popup from "reactjs-popup";
 import AuctionEdit from './AuctionEdit';
 import { translate, Trans } from 'react-i18next'
+import Button from "bootstrap/js/src/button";
 
 class AuctionList extends React.Component {
 
@@ -39,34 +40,34 @@ class AuctionList extends React.Component {
         }
 
         return (
-            <div>
-                <div className="container">
-                    {auctions.map((auction) =>
-                    <div key={auction.id}>
-                            <div className="col-sm-4">
-                                <div className="panel panel-primary" style={{width:180}}>
-                                    <div className="panel-heading"><h3>{auction.title}</h3></div>
-                                    <div className="panel-body"> <img src={auction.pictures} className="img-responsive" style={{width:100}} alt="Image"/></div>
-                                    <div className="panel-footer"> <p><Trans i18nKey='button.price'>Price</Trans> {": " + auction.priceInit}</p></div>
-                                    <AuctionEdit id={auction.id}/>
-                                    <br/>
-                                    <Popup trigger={<button> <Trans i18nKey="button.removeAuction">Remove Auction</Trans> </button>} position="right center">
-                                        <Trans i18nKey='auction.text'><label htmlFor="description">You are sure you want to delete the auction?</label></Trans>
-                                        <button onClick={this.delete.bind(this, auction.id)}
-                                                className="btn btn-danger">
-                                            <Trans i18nKey='auction.yes'>Yes</Trans>
-                                        </button>
-                                    </Popup>
-                                    <br/>
+        <div className="row text-center">
+            {auctions.map((auction) =>
+                            <div className="col-lg-3 col-md-6 mb-4" key={auction.id}>
+                                <div className="card">
+                                        <img className="card-img-top" src={auction.pictures}  alt=""/>
+                                        <div className="card-body">
+                                            <h4 className="card-title">{auction.title}</h4>
+                                            <p className="card-text">{auction.description}</p>
+                                            <p className="card-text"><p><Trans i18nKey='button.price'>Price</Trans> {": " + auction.priceInit}</p></p>
+                                        </div>
+                                        <div className="card-footer">
+                                            <AuctionEdit id={auction.id}/>
+                                            <Popup trigger={<button> <Trans i18nKey="button.removeAuction">Remove Auction</Trans> </button>} position="right center">
+                                                <Trans i18nKey='auction.text'><label htmlFor="description">You are sure you want to delete the auction?</label></Trans>
+                                                <button onClick={this.delete.bind(this, auction.id)}
+                                                        className="btn btn-danger">
+                                                    <Trans i18nKey='auction.yes'>Yes</Trans>
+                                                </button>
+                                            </Popup>
+                                        </div>
                                 </div>
                             </div>
-                    </div>
                     )}
                 </div>
-            </div>
         );
     }
 }
 
+
 export default translate('common')(AuctionList);
-//export default AuctionList;
+//export default AuctionList;)

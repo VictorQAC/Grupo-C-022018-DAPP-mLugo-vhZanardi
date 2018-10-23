@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import logo from './logo_subastas.png';
 import './App.css';
 import './Button.css';
-import './css/shop-item.css';
+import './css/template.css';
 import './bootstrap/css/bootstrap.css';
 import './bootstrap/css/bootstrap-grid.css';
 import './bootstrap/css/bootstrap-reboot.css';
+import BackgroundImage from 'react-background-image-loader';
 
 import AuctionList from './componet/AuctionList';
 import AuctionCreate from './componet/AuctionCreate';
 import AuctionMap from './componet/AuctionMap';
 import { translate, Trans } from 'react-i18next'
+
+var sectionStyle = {
+    width: "100%",
+    height: "400px",
+    backgroundImage: "url(" + "http://simpleauctionsite.com/images/slide1.jpg" + ")"
+};
 
 class App extends Component {
     render() {
@@ -41,50 +48,69 @@ class App extends Component {
                     <br/>
                     <AuctionMap/>*/
             <div>
-                <title>Bootstrap Example</title>
                 <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-                <style dangerouslySetInnerHTML={{__html: "\n    /* Remove the navbar's default rounded borders and increase the bottom margin */ \n    .navbar {\n      margin-bottom: 50px;\n      border-radius: 0;\n    }\n    \n    /* Remove the jumbotron's default bottom margin */ \n     .jumbotron {\n      margin-bottom: 0;\n    }\n   \n    /* Add a gray background color and some padding to the footer */\n    footer {\n      background-color: #f2f2f2;\n      padding: 25px;\n    }\n  " }} />
-                <nav className="navbar navbar-inverse" style={{marginTop:-60}}>
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                <span className="icon-bar" />
-                                <span className="icon-bar" />
-                                <span className="icon-bar" />
-                            </button>
-                        </div>
-                        <div className="collapse navbar-collapse" id="myNavbar">
-                            <ul className="nav navbar-nav">
-                                <li style={{marginLeft: -10}}><img src={logo} className="App-logo"/></li>
-                                <li className="active" style={{marginLeft: 60, marginTop:-45}}><a href="#">Home</a></li>
-                            </ul>
-                            <ul className="nav navbar-nav navbar-right" style={{marginLeft: 50}}>
-                                <li><a href="#"><span className="glyphicon glyphicon-user" /> Your Account</a></li>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                <meta name="description" content />
+                <meta name="author" content />
+                {/* Bootstrap core CSS */}
+                <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+                {/* Custom styles for this template */}
+                <link href="css/template.css" rel="stylesheet" />
+                {/* Navigation */}
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                    <div className="container">
+                        <a className="navbar-brand" href="#">Start Bootstrap</a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon" />
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarResponsive">
+                            <ul className="navbar-nav ml-auto">
+                                <li className="nav-item active">
+                                    <a className="nav-link" href="#">Home
+                                        <span className="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">About</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">Services</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">Contact</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-                <div className="jumbotron">
-                    <img src="http://simpleauctionsite.com/images/slide1.jpg"/>
-                    <h1 className="App-title">
-                        {this.props.t('welcome.title')}
-                    </h1>
+                {/* Page Content */}
+                <div className="container">
+                     {/* Jumbotron Header */}
+                    <header className="jumbotron my-4" style={sectionStyle}>
+                        <h1 className="display-3">
+                            {this.props.t('welcome.title')}</h1>
+                        <p className="lead">
+                        <Trans i18nKey='welcome.intro'>intro</Trans>
+                        </p>
+                        <a href="#" className="btn btn-primary btn-lg">Create Auction</a>
+                    </header>
+                    {/* Page Features */}
+                    <AuctionList/>
+                    {/* /.container */}
                 </div>
-                <AuctionList/>
-                <footer className="container-fluid text-center">
-                    <p>Online Store Copyright</p>
-                    <form className="form-inline">Get deals:
-                        <input className="form-control" size={50} placeholder="Email Address" type="email" />
-                        <button type="button" className="btn btn-danger">Sign Up</button>
-                    </form>
+                {/* Footer */}
+                <footer className="py-5 bg-dark">
+                    <div className="container">
+                        <p className="m-0 text-center text-white">Copyright © CrazyAuction 2018</p>
+                    </div>
+                    {/* /.container */}
                 </footer>
+                {/* Bootstrap core JavaScript */}
             </div>
         );
     }
-
 }
+
 
 export default translate('common')(App);
 // export default App;
