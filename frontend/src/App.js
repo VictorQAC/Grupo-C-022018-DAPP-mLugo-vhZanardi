@@ -6,6 +6,7 @@ import './css/shop-item.css';
 import './bootstrap/css/bootstrap.css';
 import './bootstrap/css/bootstrap-grid.css';
 import './bootstrap/css/bootstrap-reboot.css';
+
 import AuctionList from './componet/AuctionList';
 import AuctionCreate from './componet/AuctionCreate';
 import AuctionMap from './componet/AuctionMap';
@@ -40,111 +41,49 @@ class App extends Component {
                     <br/>
                     <AuctionMap/>*/
             <div>
+                <title>Bootstrap Example</title>
                 <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <meta name="description" content />
-                <meta name="author" content />
-                <title>Auctions On Line!</title>
-                {/* Bootstrap core CSS */}
-                <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-                {/* Custom styles for this template */}
-                <link href="css/shop-item.css" rel="stylesheet" />
-                {/* Navigation */}
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                    <div className="container">
-                        <a className="navbar-brand" href="#">{this.props.t('welcome.title', "")}</a>
-                        <img src={logo} className="App-logo" alt="logo"/>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon" />
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarResponsive">
-                            <ul className="navbar-nav ml-auto">
-                                <li className="nav-item active">
-                                    <a className="nav-link" href="#">Home
-                                        <span className="sr-only">(current)</span>
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">About</a>
-                                </li>
-                                <li className="nav-item">
-                                    <button className="nav-link" onClick={() => i18n.changeLanguage('es')} style={{backgroundColor:"#6fc7aa"}}>Español
-                                    </button>
-                               </li>
-                               <li className="nav-item">
-                                   <button className="nav-link" onClick={() => i18n.changeLanguage('en')} style={{backgroundColor:"#6fc7aa"}}>English
-                                   </button>
-                               </li>
-
-
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+                <style dangerouslySetInnerHTML={{__html: "\n    /* Remove the navbar's default rounded borders and increase the bottom margin */ \n    .navbar {\n      margin-bottom: 50px;\n      border-radius: 0;\n    }\n    \n    /* Remove the jumbotron's default bottom margin */ \n     .jumbotron {\n      margin-bottom: 0;\n    }\n   \n    /* Add a gray background color and some padding to the footer */\n    footer {\n      background-color: #f2f2f2;\n      padding: 25px;\n    }\n  " }} />
+                <nav className="navbar navbar-inverse" style={{marginTop:-60}}>
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span className="icon-bar" />
+                                <span className="icon-bar" />
+                                <span className="icon-bar" />
+                            </button>
+                        </div>
+                        <div className="collapse navbar-collapse" id="myNavbar">
+                            <ul className="nav navbar-nav">
+                                <li style={{marginLeft: -10}}><img src={logo} className="App-logo"/></li>
+                                <li className="active" style={{marginLeft: 60, marginTop:-45}}><a href="#">Home</a></li>
+                            </ul>
+                            <ul className="nav navbar-nav navbar-right" style={{marginLeft: 50}}>
+                                <li><a href="#"><span className="glyphicon glyphicon-user" /> Your Account</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-                {/* Page Content */}
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-3">
-                            <h1 className="my-4">
-                                <Trans i18nKey='welcome.intro'>
-                                    Auctions Online
-                                </Trans>
-                            </h1>
-                            <div className="list-group">
-                                <a href="#" className="list-group-item active">Category 1</a>
-                                <a href="#" className="list-group-item">Category 2</a>
-                                <a href="#" className="list-group-item">Category 3</a>
-                            </div>
-                        </div>
-                        {/* /.col-lg-3 */}
-                        <div className="col-lg-9">
-                            <div className="card mt-4">
-                                <img className="card-img-top img-fluid" src="http://placehold.it/900x400" alt />
-                                <div className="card-body">
-                                    <h3 className="card-title">Product Name</h3>
-                                    <h4>$24.99</h4>
-                                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
-                                    <span className="text-warning">★ ★ ★ ★ ☆</span>
-                                    4.0 stars
-                                </div>
-                            </div>
-                            {/* /.card */}
-                            <div className="card card-outline-secondary my-4">
-                                <div className="card-header">
-                                    Product Reviews
-                                </div>
-                                <div className="card-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                    <small className="text-muted">Posted by Anonymous on 3/1/17</small>
-                                    <hr />
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                    <small className="text-muted">Posted by Anonymous on 3/1/17</small>
-                                    <hr />
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                    <small className="text-muted">Posted by Anonymous on 3/1/17</small>
-                                    <hr />
-                                    <a href="#" className="btn btn-success">Leave a Review</a>
-                                </div>
-                            </div>
-                            {/* /.card */}
-                        </div>
-                        {/* /.col-lg-9 */}
-                    </div>
+                <div className="jumbotron">
+                    <img src="http://simpleauctionsite.com/images/slide1.jpg"/>
+                    <h1 className="App-title">
+                        {this.props.t('welcome.title')}
+                    </h1>
                 </div>
-                {/* /.container */}
-                {/* Footer */}
-                <footer className="py-5 bg-dark">
-                    <div className="container">
-                        <p className="m-0 text-center text-white">Copyright © Your Website 2017</p>
-                    </div>
-                    {/* /.container */}
+                <AuctionList/>
+                <footer className="container-fluid text-center">
+                    <p>Online Store Copyright</p>
+                    <form className="form-inline">Get deals:
+                        <input className="form-control" size={50} placeholder="Email Address" type="email" />
+                        <button type="button" className="btn btn-danger">Sign Up</button>
+                    </form>
                 </footer>
-                {/* Bootstrap core JavaScript */}
-                <script src="/jquery/jquery.min.js"></script>
-                <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
             </div>
         );
     }
+
 }
 
 export default translate('common')(App);
