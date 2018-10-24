@@ -11,6 +11,8 @@ import BackgroundImage from 'react-background-image-loader';
 import AuctionList from './componet/AuctionList';
 import AuctionCreate from './componet/AuctionCreate';
 import AuctionMap from './componet/AuctionMap';
+import AuctionDetail from './componet/AuctionDetail';
+import { BrowserRouter, Route, Switch,Redirect} from 'react-router-dom';
 import { translate, Trans } from 'react-i18next'
 
 var sectionStyle = {
@@ -23,30 +25,7 @@ class App extends Component {
     render() {
         const {i18n} = this.props;
         return (
-                /*<div className="App">
-                    <header className="App-header">
-                  <div style={{marginLeft:1220}}>
-                    <button onClick={() => i18n.changeLanguage('es')} style={{backgroundColor:"#1fc7ff",marginTop:0,marginRight:10}}>Español
-                    </button>
-                      <button className="Button-style" onClick={() => i18n.changeLanguage('en')} style={{backgroundColor:"#1fc7ff",marginTop:0}}>English
-                      </button>
-                  </div>*/
-                    /*<img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">
-                        {this.props.t('welcome.title', {framework: "react-i18next"})}
-                    </h1>
-                    <p>
-                        <Trans i18nKey='welcome.intro'>
-                            Edit <code>src/App.js</code> and save to reload.
-                        </Trans>
-                    </p>
-                    </header>
-                    <AuctionCreate/>
-                    <br/>
-                    <br/>
-                    <AuctionList/>
-                    <br/>
-                    <AuctionMap/>*/
+            <BrowserRouter>
             <div>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -59,14 +38,14 @@ class App extends Component {
                 {/* Navigation */}
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                     <div className="container">
-                        <a className="navbar-brand" href="#">Start Bootstrap</a>
+                        <a className="navbar-brand" href="/home">SUBASTAS LOCAS PAPAIII!!!</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon" />
                         </button>
                         <div className="collapse navbar-collapse" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active">
-                                    <a className="nav-link" href="#">Home
+                                    <a className="nav-link" href="/home">Home
                                         <span className="sr-only">(current)</span>
                                     </a>
                                 </li>
@@ -86,18 +65,27 @@ class App extends Component {
                 {/* Page Content */}
                 <div className="container">
                      {/* Jumbotron Header */}
-                    <header className="jumbotron my-4" style={sectionStyle}>
-                        <h1 className="display-3">
-                            {this.props.t('welcome.title')}</h1>
-                        <p className="lead">
-                        <Trans i18nKey='welcome.intro'>intro</Trans>
-                        </p>
-                        <a href="#" className="btn btn-primary btn-lg">Create Auction</a>
-                    </header>
-                    {/* Page Features */}
-                    <AuctionList/>
-                    {/* /.container */}
+
+                    <Switch>
+                        <Route
+                            path="/home"
+                            render={() => <AuctionList/>} />
+                    </Switch>
+
+                    <Switch>
+                        <Route
+                            path="/auctionDetail/:id"
+                            render={(props) => <AuctionDetail {...props} />} />
+                    </Switch>
+
+                    <Switch>
+                        <Route
+                            path="/auctionCreate"
+                            render={() => <AuctionCreate/>} />
+                    </Switch>
+
                 </div>
+
                 {/* Footer */}
                 <footer className="py-5 bg-dark">
                     <div className="container">
@@ -107,6 +95,7 @@ class App extends Component {
                 </footer>
                 {/* Bootstrap core JavaScript */}
             </div>
+            </BrowserRouter>
         );
     }
 }

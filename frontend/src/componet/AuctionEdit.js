@@ -36,7 +36,7 @@ class AuctionEdit extends React.Component {
     render() {
 
         return (
-            <Popup trigger={<button><Trans i18nKey="button.editAuction">Edit</Trans> </button>} position="right center">
+            <Popup trigger={<button className="btn btn-primary"><Trans i18nKey="button.editAuction">Edit</Trans> </button>} position="right center">
 
                 <form onSubmit={this.handleSubmit}>
 
