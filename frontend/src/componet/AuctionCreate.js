@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import Popup from "reactjs-popup";
 import { translate, Trans } from 'react-i18next'
+import './AuctionCreate.css';
 
 class AuctionCreate extends React.Component {
 
@@ -31,25 +32,39 @@ class AuctionCreate extends React.Component {
 
     render() {
         return (
+
+            <div className="inner contact">
+
+                <div className="contact-form">
+
                 <form onSubmit={this.handleSubmit}>
-                    <Trans i18nKey="auction.titleAuction"><label htmlFor="title">Title</label></Trans>
-                    <input id="title" name="title" type="text" value={this.state.auction.title} onChange={this.updateState.bind(this,'title')}/>
-                    <br/>
 
-                    <Trans i18nKey ="auction.descriptionAuction"><label htmlFor="description">Description</label></Trans>
-                    <input id="description" name="description" value={this.state.auction.description} type="text"  onChange={this.updateState.bind(this,'description')}/>
-                    <br/>
+                    <div className="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
 
-                    <Trans i18nKey = "auction.priceAuction"> <label htmlFor="priceInit">Price Init</label></Trans>
-                    <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
-                    <br/>
+                        <Trans i18nKey="auction.titleAuction"><label htmlFor="title">Title</label></Trans>
+                        <input id="title" name="title" required="required" class="form" type="text" value={this.state.auction.title} onChange={this.updateState.bind(this,'title')}/>
+                        <br/>
 
-                    <Trans i18nKey = "auction.url"><label htmlFor="picture">Photo Url</label></Trans>
-                    <input id="picture" name="picture" value={this.state.auction.picture} type="text" onChange={this.updateState.bind(this,'picture')} />
-                    <br/>
+                        <Trans i18nKey ="auction.descriptionAuction"><label htmlFor="description">Description</label></Trans>
+                        <input id="description" name="description"  required="required" class="form" value={this.state.auction.description} type="text"  onChange={this.updateState.bind(this,'description')}/>
+                        <br/>
 
-                    <button><Trans i18nKey='button.createAuction'>Create Auction</Trans></button>
+                        <Trans i18nKey = "auction.priceAuction"> <label htmlFor="priceInit">Price Init</label></Trans>
+                        <input id="priceInit" name="priceInit"  required="required" class="form" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
+                        <br/>
+
+                        <Trans i18nKey = "auction.url"><label htmlFor="picture">Photo Url</label></Trans>
+                        <input id="picture" name="picture" required="required" class="form" value={this.state.auction.picture} type="text" onChange={this.updateState.bind(this,'picture')} />
+                        <br/>
+
+                    </div>
+
+                    <button type="submit" id="submit" name="submit" class="form-btn semibold"><Trans i18nKey='button.createAuction'>Create Auction</Trans></button>
                 </form>
+
+                </div>
+
+            </div>
         );
     }
 }
