@@ -66,6 +66,10 @@ class App extends Component {
                 <div className="container">
                      {/* Jumbotron Header */}
 
+                    <Redirect
+                        from="/"
+                        to="/home" />
+
                     <Switch>
                         <Route
                             path="/home"

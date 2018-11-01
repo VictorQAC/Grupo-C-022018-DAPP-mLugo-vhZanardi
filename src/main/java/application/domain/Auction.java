@@ -26,6 +26,7 @@ public class Auction {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime dateFinal;
     private LocalTime hoursFinal;
+    private String dateInitString;
 
     @OneToOne(
             cascade = CascadeType.ALL,
@@ -70,6 +71,7 @@ public class Auction {
         this.autoBid = priceInit;
         this.currentWinner = owner;
         this.history = new ArrayList<>();
+        this.dateInitString = this.dateInit.toString();
     }
 
     public void inProgress(){
@@ -285,5 +287,13 @@ public class Auction {
         return String.format(
                 "Auction[id=%d, title='%s', description='%s']",
                 id, title, description);
+    }
+
+    public String getDateInitString() {
+        return dateInitString;
+    }
+
+    public void setDateInitString(String dateInitString) {
+        this.dateInitString = dateInitString;
     }
 }

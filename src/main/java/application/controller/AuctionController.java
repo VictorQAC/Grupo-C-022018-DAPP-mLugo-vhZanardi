@@ -3,6 +3,7 @@ package application.controller;
 import application.dto.AuctionDTO;
 import application.domain.Auction;
 import application.repository.AuctionRepository;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,7 @@ public class AuctionController {
         a.setDescription(auction.getDescription());
         a.setPriceInit(auction.getPriceInit());
         a.addPictures(auction.getPicture());
+        a.setDateInit(new DateTime(auction.getDateInit()));
         repository.save(a);
 
     }
