@@ -1,7 +1,7 @@
 {
   "welcome": {
     "title": "Welcome",
-    "intro": ["Welcome to SubastARG the site where you can offer any product and sell it at the best price.\\n Of course, you can also get what you need by offering quickly and competing with other bidders Let the game begin!!!"]
+    "intro": "Welcome to SubastARG the site where you can offer any product and sell it at the best price. Of course, you can also get what you need by offering quickly and competing with other bidders Let the game begin!!!"
   },
 
   "button": {
@@ -10,7 +10,9 @@
     "price": "Price",
     "edit" : "Edit",
     "editAuction" : "Edit Auction",
-    "removeAuction" : "Remove Auction"
+    "removeAuction" : "Remove Auction",
+    "detail": "Detail",
+    "language": "Language"
   },
 
   "auction":{

@@ -59,7 +59,7 @@ class AuctionCreate extends React.Component {
 
                     </div>
 
-                    <button type="submit" id="submit" name="submit" class="form-btn semibold"><Trans i18nKey='button.createAuction'>Create Auction</Trans></button>
+                    <button type="submit" id="submit" name="submit" class="form-btn semibold"><Trans i18nKey="button.createAuction">Create Auction</Trans></button>
                 </form>
 
                 </div>

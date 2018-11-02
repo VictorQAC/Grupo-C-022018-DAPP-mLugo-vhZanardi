@@ -50,12 +50,12 @@ class AuctionList extends React.Component {
         return (
                 <div>
                     <header className="jumbotron my-4" style={sectionStyle}>
-                        <h1 className="display-3">
+                        <h1 className="display-3" style={{color:"white"}}>
                             {this.props.t('welcome.title')}</h1>
-                        <p className="lead">
+                        <p className="lead" style={{color:"lightblue"}}>
                             <Trans i18nKey='welcome.intro'>intro</Trans>
                         </p>
-                        <Link to= {"/auctionCreate"} className="btn btn-primary">Create Auction</Link>
+                        <Link to= {"/auctionCreate"} className="btn btn-primary"><Trans i18nKey="button.createAuction">Create Auction</Trans></Link>
                     </header>
 
                     <div className="row text-center">
@@ -78,7 +78,7 @@ class AuctionList extends React.Component {
                                                     </button>
                                                 </Popup>
                                             </div>
-                                        <Link to= {"/auctionDetail/" + auction.id} className="btn btn-primary">Detail</Link>
+                                        <Link to= {"/auctionDetail/" + auction.id} className="btn btn-primary"><Trans i18nKey="button.detail">Detail</Trans></Link>
                                     </div>
                                 </div>
                             )}

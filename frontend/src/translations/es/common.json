@@ -10,7 +10,9 @@
     "price": "Precio",
     "edit" : "Editar",
     "editAuction" : "Editar Subasta",
-    "removeAuction" : "Eliminar Subasta"
+    "removeAuction" : "Eliminar Subasta",
+    "detail": "Detalle",
+    "language": "Idioma"
   },
 
   "auction":{
