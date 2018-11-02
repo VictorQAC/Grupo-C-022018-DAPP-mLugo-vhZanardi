@@ -21,6 +21,7 @@
     "priceAuction" : "Precio Inicial",
     "url" : "Url Foto",
     "text" : "Esta seguro que desea eliminar la subasta?",
-    "yes" : "Si"
+    "yes" : "Si",
+    "publicationDate": "Fecha de Publicación"
   }
 }

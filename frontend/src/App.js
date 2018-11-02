@@ -23,7 +23,6 @@ class App extends Component {
   login() {
     this.props.auth.login();
   }
-
   logout() {
     this.props.auth.logout();
   }
@@ -45,7 +44,13 @@ class App extends Component {
                   {/* Navigation */}
                   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                       <div className="container">
-                          <a className="navbar-brand" href="/home">SubastARG</a>
+                          {isAuthenticated() && (
+                              <a className="navbar-brand" href="/home">SubastARG</a>
+                          )}
+                          {!isAuthenticated() && (
+                              <a className="navbar-brand" href="/callback">SubastARG</a>
+                          )
+                          }
                           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                               <span className="navbar-toggler-icon" />
                           </button>

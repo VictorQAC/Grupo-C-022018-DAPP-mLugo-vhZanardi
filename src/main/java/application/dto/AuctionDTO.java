@@ -1,13 +1,12 @@
 package application.dto;
 
-import java.util.ArrayList;
-
 public class AuctionDTO{
 
     private String title;
     private String description;
     private double priceInit;
     private String picture;
+    private String dateInit;
 
 
     public AuctionDTO() {
@@ -43,5 +42,13 @@ public class AuctionDTO{
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getDateInit() {
+        return dateInit;
+    }
+
+    public void setDateInit(String dateInit) {
+        this.dateInit = dateInit;
     }
 }

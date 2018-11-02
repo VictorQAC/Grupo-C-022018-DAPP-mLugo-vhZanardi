@@ -13,7 +13,8 @@ class AuctionCreate extends React.Component {
                 title:undefined,
                 description: undefined,
                 priceInit: undefined,
-                picture: undefined
+                picture: undefined,
+                dateInit: undefined
             }
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +23,7 @@ class AuctionCreate extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         axios.post('http://localhost:3000/api/auctionCreate',this.state.auction);
+        console.log(this.state.auction);
     }
 
     updateState = (name,event) => {
@@ -55,6 +57,10 @@ class AuctionCreate extends React.Component {
 
                         <Trans i18nKey = "auction.url"><label htmlFor="picture">Photo Url</label></Trans>
                         <input id="picture" name="picture" required="required" class="form" value={this.state.auction.picture} type="text" onChange={this.updateState.bind(this,'picture')} />
+                        <br/>
+
+                        <Trans i18nKey = "auction.publicationDate"><label htmlFor="dateInit">Publication date</label></Trans>
+                        <input id="dateInit" name="dateInit" required="required" class="form" value={this.state.auction.dateInit} type="date" onChange={this.updateState.bind(this,'dateInit')} />
                         <br/>
 
                     </div>

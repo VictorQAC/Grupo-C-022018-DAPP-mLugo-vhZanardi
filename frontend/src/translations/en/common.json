@@ -16,11 +16,12 @@
   },
 
   "auction":{
-  "titleAuction" : "Title",
-  "descriptionAuction" : "Description",
-  "priceAuction" : "PriceInit",
-  "url" : "Photo Url",
-  "text" : "You are sure you want to delete the auction?",
-  "yes" : "Yes"
+    "titleAuction" : "Title",
+    "descriptionAuction" : "Description",
+    "priceAuction" : "PriceInit",
+    "url" : "Photo Url",
+    "text" : "You are sure you want to delete the auction?",
+    "yes" : "Yes",
+    "publicationDate": "Publication date"
   }
 }

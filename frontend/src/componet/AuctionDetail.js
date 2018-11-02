@@ -42,6 +42,9 @@ class AuctionDetail extends React.Component {
                             <h3 class="my-3">Auction Details</h3>
                             <ul>
                                 <li> Precio: {this.state.auction.priceInit}</li>
+                                <li> Fecha de Publicación: {this.state.auction.dateInitString}</li>
+                                {console.log(this.state.auction)}
+
                             </ul>
                         </div>
 
