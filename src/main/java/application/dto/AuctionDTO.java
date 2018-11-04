@@ -7,6 +7,8 @@ public class AuctionDTO{
     private double priceInit;
     private String picture;
     private String dateInit;
+    private String dateFinal;
+    private String hoursFinal;
 
 
     public AuctionDTO() {
@@ -50,5 +52,21 @@ public class AuctionDTO{
 
     public void setDateInit(String dateInit) {
         this.dateInit = dateInit;
+    }
+
+    public String getDateFinal() {
+        return dateFinal;
+    }
+
+    public void setDateFinal(String dateFinal) {
+        this.dateFinal = dateFinal;
+    }
+
+    public String getHoursFinal() {
+        return hoursFinal;
+    }
+
+    public void setHoursFinal(String hoursFinal) {
+        this.hoursFinal = hoursFinal;
     }
 }

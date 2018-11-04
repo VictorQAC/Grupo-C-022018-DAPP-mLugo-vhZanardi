@@ -7,10 +7,12 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.time.LocalTime;
 
 @RestController
 public class AuctionController {
@@ -50,6 +52,8 @@ public class AuctionController {
         a.setPriceInit(auction.getPriceInit());
         a.addPictures(auction.getPicture());
         a.setDateInit(new DateTime(auction.getDateInit()));
+        a.setDateFinal(new DateTime(auction.getDateFinal()));
+        a.setHoursFinal(LocalTime.parse(auction.getHoursFinal()));
         repository.save(a);
 
     }

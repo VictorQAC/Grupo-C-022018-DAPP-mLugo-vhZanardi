@@ -27,6 +27,8 @@ public class Auction {
     private DateTime dateFinal;
     private LocalTime hoursFinal;
     private String dateInitString;
+    private String dateFinalString;
+    private String hoursFinalString;
 
     @OneToOne(
             cascade = CascadeType.ALL,
@@ -72,6 +74,8 @@ public class Auction {
         this.currentWinner = owner;
         this.history = new ArrayList<>();
         this.dateInitString = this.dateInit.toString();
+        this.dateFinalString = this.dateFinal.toString();
+        this.hoursFinalString = this.hoursFinal.toString();
     }
 
     public void inProgress(){
@@ -204,6 +208,7 @@ public class Auction {
 
     public void setDateInit(DateTime dateInit) {
         this.dateInit = dateInit;
+        this.dateInitString = this.dateInit.toString();
     }
 
     public DateTime getDateFinal() {
@@ -212,6 +217,7 @@ public class Auction {
 
     public void setDateFinal(DateTime dateFinal) {
         this.dateFinal = dateFinal;
+        this.dateFinalString = this.dateFinal.toString();
     }
 
     public void setHistory(List<AuctionHistory> history) {
@@ -223,7 +229,9 @@ public class Auction {
     }
 
     public void setHoursFinal(LocalTime hoursFinal) {
+
         this.hoursFinal = hoursFinal;
+        this.hoursFinalString = this.hoursFinal.toString();
     }
 
     public User getOwner() {
@@ -296,4 +304,21 @@ public class Auction {
     public void setDateInitString(String dateInitString) {
         this.dateInitString = dateInitString;
     }
+
+    public String getDateFinalString() {
+        return dateFinalString;
+    }
+
+    public void setDateFinalString(String dateFinalString) {
+        this.dateFinalString = dateFinalString;
+    }
+
+    public String getHoursFinalString() {
+        return hoursFinalString;
+    }
+
+    public void setHoursFinalString(String hoursFinalString) {
+        this.hoursFinalString = hoursFinalString;
+    }
+
 }

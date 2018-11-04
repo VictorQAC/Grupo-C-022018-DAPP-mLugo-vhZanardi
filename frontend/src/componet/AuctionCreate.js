@@ -14,7 +14,9 @@ class AuctionCreate extends React.Component {
                 description: undefined,
                 priceInit: undefined,
                 picture: undefined,
-                dateInit: undefined
+                dateInit: undefined,
+                dateFinal: undefined,
+                hoursFinal: undefined
             }
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,8 +61,16 @@ class AuctionCreate extends React.Component {
                         <input id="picture" name="picture" required="required" class="form" value={this.state.auction.picture} type="text" onChange={this.updateState.bind(this,'picture')} />
                         <br/>
 
-                        <Trans i18nKey = "auction.publicationDate"><label htmlFor="dateInit">Publication date</label></Trans>
+                        <Trans i18nKey = "auction.publicationDate"><label htmlFor="dateInit">Publication Date</label></Trans>
                         <input id="dateInit" name="dateInit" required="required" class="form" value={this.state.auction.dateInit} type="date" onChange={this.updateState.bind(this,'dateInit')} />
+                        <br/>
+
+                        <Trans i18nKey = "auction.finishDate"><label htmlFor="dateFinal">Finish Date</label></Trans>
+                        <input id="dateFinal" name="dateFinal" required="required" class="form" value={this.state.auction.dateFinal} type="date" onChange={this.updateState.bind(this,'dateFinal')} />
+                        <br/>
+
+                        <Trans i18nKey = "auction.endingTime"><label htmlFor="hoursFinal">Finish Date</label></Trans>
+                        <input id="hoursFinal" name="hoursFinal" required="required" class="form" value={this.state.auction.hoursFinal} type="time" onChange={this.updateState.bind(this,'hoursFinal')} />
                         <br/>
 
                     </div>

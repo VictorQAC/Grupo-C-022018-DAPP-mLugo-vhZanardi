@@ -22,6 +22,8 @@
     "url" : "Url Foto",
     "text" : "Esta seguro que desea eliminar la subasta?",
     "yes" : "Si",
-    "publicationDate": "Fecha de Publicación"
+    "publicationDate": "Fecha de Publicación",
+    "finishDate": "Fecha de Finalización",
+    "endingTime": "Hora de finalización"
   }
 }

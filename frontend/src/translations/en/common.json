@@ -22,6 +22,8 @@
     "url" : "Photo Url",
     "text" : "You are sure you want to delete the auction?",
     "yes" : "Yes",
-    "publicationDate": "Publication date"
+    "publicationDate": "Publication date",
+    "finishDate": "Finish Date",
+    "endingTime": "Ending time"
   }
 }
