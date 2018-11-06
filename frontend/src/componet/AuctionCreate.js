@@ -24,7 +24,7 @@ class AuctionCreate extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:3000/api/auctionCreate',this.state.auction);
+        axios.post('/api/auctionCreate',this.state.auction);
         console.log(this.state.auction);
     }
 
@@ -54,7 +54,7 @@ class AuctionCreate extends React.Component {
                         <br/>
 
                         <Trans i18nKey = "auction.priceAuction"> <label htmlFor="priceInit">Price Init</label></Trans>
-                        <input id="priceInit" name="priceInit"  required="required" class="form" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
+                        <input id="priceInit" name="priceInit"  required="required" class="form" value={this.state.auction.priceInit} type="number" min="1" pattern="^[0-9]+" onChange={this.updateState.bind(this,'priceInit')} />
                         <br/>
 
                         <Trans i18nKey = "auction.url"><label htmlFor="picture">Photo Url</label></Trans>

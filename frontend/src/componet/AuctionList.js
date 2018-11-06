@@ -29,14 +29,14 @@ class AuctionList extends React.Component {
     componentDidMount() {
         this.setState({isLoading: true});
 
-        fetch('http://localhost:3000/api/auctionList')
+        fetch('/api/auctionList')
             .then(response => response.json())
             .then(data => this.setState({auctions: data, isLoading: false}));
     }
 
     delete(id){
         console.log(id);
-        axios.delete('http://localhost:3000/api/auctionDelete/'+id);
+        axios.delete('/api/auctionDelete/'+id);
     }
 
     render() {

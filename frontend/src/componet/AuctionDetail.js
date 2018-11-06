@@ -14,7 +14,7 @@ class AuctionDetail extends React.Component {
 
     componentDidMount() {
 
-        fetch('http://localhost:3000/api/auctionBy/'+this.state.id)
+        fetch('/api/auctionBy/'+this.state.id)
             .then(response => response.json())
             .then(data => this.setState({auction: data}));
 

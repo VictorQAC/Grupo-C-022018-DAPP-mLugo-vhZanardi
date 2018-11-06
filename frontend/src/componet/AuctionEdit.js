@@ -16,7 +16,7 @@ class AuctionEdit extends React.Component {
 
     componentDidMount() {
 
-        fetch('http://localhost:3000/api/auctionBy/'+this.state.id)
+        fetch('/api/auctionBy/'+this.state.id)
             .then(response => response.json())
             .then(data => this.setState({auction: data}));
 
@@ -30,7 +30,7 @@ class AuctionEdit extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:3000/api/auctionUpdate/'+this.state.id,this.state.auction);
+        axios.post('/api/auctionUpdate/'+this.state.id,this.state.auction);
     }
 
     render() {
@@ -47,7 +47,7 @@ class AuctionEdit extends React.Component {
                     <input id="description" name="description" value={this.state.auction.description} type="text"  onChange={this.updateState.bind(this,'description')}/>
 
                     <Trans i18nKey = "auction.priceAuction"> <label htmlFor="priceInit">Price Init</label></Trans>
-                    <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" onChange={this.updateState.bind(this,'priceInit')} />
+                    <input id="priceInit" name="priceInit" value={this.state.auction.priceInit} type="number" min="1" pattern="^[0-9]+" onChange={this.updateState.bind(this,'priceInit')} />
 
                     <Trans i18nKey = "auction.url"> <label htmlFor="picture">Photo Url</label></Trans>
                     <input id="picture" name="picture" value={this.state.auction.pictures} type="text" onChange={this.updateState.bind(this,'picture')} />
