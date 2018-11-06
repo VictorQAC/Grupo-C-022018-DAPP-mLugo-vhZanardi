@@ -18,7 +18,7 @@
   "auction":{
     "titleAuction" : "Título",
     "descriptionAuction" : "Descripción",
-    "priceAuction" : "Precio Inicial",
+    "priceAuction" : "Precio Actual",
     "url" : "Url Foto",
     "text" : "Esta seguro que desea eliminar la subasta?",
     "yes" : "Si",

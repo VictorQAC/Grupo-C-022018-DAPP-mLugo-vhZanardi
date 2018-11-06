@@ -11,7 +11,7 @@ class Home extends Component {
         {
           isAuthenticated() && (
               <h4>
-                You are logged in!
+
               </h4>
             )
         }

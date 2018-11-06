@@ -18,7 +18,7 @@
   "auction":{
     "titleAuction" : "Title",
     "descriptionAuction" : "Description",
-    "priceAuction" : "PriceInit",
+    "priceAuction" : "Price Current",
     "url" : "Photo Url",
     "text" : "You are sure you want to delete the auction?",
     "yes" : "Yes",

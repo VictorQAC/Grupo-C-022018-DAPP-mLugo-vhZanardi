@@ -6,6 +6,7 @@ import application.repository.AuctionRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.time.LocalTime;
 
+@Transactional
 @RestController
 public class AuctionController {
 
@@ -77,6 +79,9 @@ public class AuctionController {
         a.get().setPriceInit(auction.getPriceInit());
         a.get().setPictures(new ArrayList<String>());
         a.get().addPictures(auction.getPicture());
+        a.get().setDateInit(new DateTime(auction.getDateInit()));
+        a.get().setDateFinal(new DateTime(auction.getDateFinal()));
+        a.get().setHoursFinal(LocalTime.parse(auction.getHoursFinal()));
         repository.save(a.get());
     }
 

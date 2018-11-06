@@ -52,6 +52,19 @@ class AuctionEdit extends React.Component {
                     <Trans i18nKey = "auction.url"> <label htmlFor="picture">Photo Url</label></Trans>
                     <input id="picture" name="picture" value={this.state.auction.pictures} type="text" onChange={this.updateState.bind(this,'picture')} />
 
+                    <Trans i18nKey = "auction.publicationDate"><label htmlFor="dateInit">Publication Date</label></Trans>
+                    <input id="dateInit" name="dateInit" value={this.state.auction.dateInitString} type="date" onChange={this.updateState.bind(this,'dateInit')} />
+                    <br/>
+
+                    <Trans i18nKey = "auction.finishDate"><label htmlFor="dateFinal">Finish Date</label></Trans>
+                    <input id="dateFinal" name="dateFinal" value={this.state.auction.dateFinalString} type="date" onChange={this.updateState.bind(this,'dateFinal')} />
+                    <br/>
+
+                    <Trans i18nKey = "auction.endingTime"><label htmlFor="hoursFinal">Finish Date</label></Trans>
+                    <input id="hoursFinal" name="hoursFinal" value={this.state.auction.hoursFinalString} type="time" onChange={this.updateState.bind(this,'hoursFinal')} />
+                    <br/>
+
+
                     <button><Trans i18nKey='button.edit'>Edit Auction</Trans></button>
 
                 </form>

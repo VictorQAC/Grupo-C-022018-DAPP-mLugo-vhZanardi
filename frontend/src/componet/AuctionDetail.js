@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './AuctionDetail.css'
-import {Trans} from "react-i18next";
+import { translate, Trans } from 'react-i18next'
 
 class AuctionDetail extends React.Component {
 
@@ -37,15 +37,14 @@ class AuctionDetail extends React.Component {
                         </div>
 
                         <div class="col-md-4">
-                            <h3 class="my-3">Auction Description</h3>
+                            <h3 class="my-3"><Trans i18nKey ="auction.descriptionAuction">Auction Description</Trans> {': '}</h3>
                             <p>{this.state.auction.description}</p>
                             <h3 class="my-3">Auction Details</h3>
                             <ul>
-                                <li> Precio: {this.state.auction.priceInit}</li>
-                                <li> Fecha de Publicación: {this.state.auction.dateInitString}</li>
-                                <li> Fecha de Finalización: {this.state.auction.dateFinalString}</li>
-                                <li> Hora de Finalización: {this.state.auction.hoursFinalString}</li>
-                                {console.log(this.state.auction)}
+                                <li> <Trans i18nKey = "auction.priceAuction"> </Trans> {': ' + this.state.auction.priceInit}</li>
+                                <li> <Trans i18nKey = "auction.publicationDate"> </Trans> {': ' + this.state.auction.dateInitString}</li>
+                                <li> <Trans i18nKey = "auction.finishDate"> </Trans> {': ' + this.state.auction.dateFinalString}</li>
+                                <li> <Trans i18nKey = "auction.endingTime"> </Trans> {': ' + this.state.auction.hoursFinalString}</li>
 
                             </ul>
                         </div>
@@ -86,8 +85,8 @@ class AuctionDetail extends React.Component {
 
             </div>
         )
-
     }
-
 }
-export default AuctionDetail;
+
+export default translate('common')(AuctionDetail);
+//export default AuctionDetail;
