@@ -12,7 +12,8 @@
     "editAuction" : "Edit Auction",
     "removeAuction" : "Remove Auction",
     "detail": "Detail",
-    "language": "Language"
+    "language": "Language",
+    "makeOffer": "Make Offer"
   },
 
   "auction":{

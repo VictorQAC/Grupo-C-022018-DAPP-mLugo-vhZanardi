@@ -35,7 +35,6 @@ class AuctionList extends React.Component {
     }
 
     delete(id){
-        console.log(id);
         axios.delete('/api/auctionDelete/'+id);
     }
 

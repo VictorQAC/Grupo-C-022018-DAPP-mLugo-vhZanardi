@@ -1,5 +1,7 @@
 package application.controller;
 
+import application.domain.InProgressAuction;
+import application.domain.User;
 import application.dto.AuctionDTO;
 import application.domain.Auction;
 import application.repository.AuctionRepository;
@@ -83,6 +85,23 @@ public class AuctionController {
         a.get().setDateFinal(new DateTime(auction.getDateFinal()));
         a.get().setHoursFinal(LocalTime.parse(auction.getHoursFinal()));
         repository.save(a.get());
+    }
+
+    @GetMapping(path ="/auctionMakeABid/{id}")
+    public String auctionMakeABid(@PathVariable String id) {
+
+        User user5 = new User("Elad","Haim","ehaim@qac.com",
+                "jlp123",new DateTime("1980-10-10"));
+
+        Optional<Auction> a = repository.findById(Long.parseLong(id));
+
+        a.get().setState(new InProgressAuction());
+
+        String result = a.get().makeABid(user5,1000);
+
+        repository.save(a.get());
+
+        return result;
     }
 
 

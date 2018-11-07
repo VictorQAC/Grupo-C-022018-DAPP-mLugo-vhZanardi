@@ -103,13 +103,13 @@ public class Auction {
         return user.getName() == this.getCurrentWinner().getName();
     }
 
-    public void makeABid(User user, double autoBid){
+    public String makeABid(User user, double autoBid){
 
         double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
 
-        if(this.isCurrentWinner(user) || !this.getState().isInProgress()){
-            return;
-        }
+        /*if(this.isCurrentWinner(user) || !this.getState().isInProgress()){
+            return "No se puede ofertar";
+        }*/
 
         if(this.getAutoBid() < nextBid){
 
@@ -119,21 +119,21 @@ public class Auction {
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
                 this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
-                this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
+                //this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
             } else {
 
                 this.setPriceInit(nextBid);
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
-                this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
+                //this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
             }
 
         } else {
 
             this.setPriceInit(nextBid);
-            this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
+            //this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
         }
-        return;
+        return "Oferta realizada";
     }
 
     public Boolean fiveMinutesLeftToFinish(){

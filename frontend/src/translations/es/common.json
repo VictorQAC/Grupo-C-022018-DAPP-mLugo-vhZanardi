@@ -12,7 +12,8 @@
     "editAuction" : "Editar Subasta",
     "removeAuction" : "Eliminar Subasta",
     "detail": "Detalle",
-    "language": "Idioma"
+    "language": "Idioma",
+    "makeOffer": "Realizar Oferta"
   },
 
   "auction":{

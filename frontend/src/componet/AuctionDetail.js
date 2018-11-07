@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './AuctionDetail.css'
+import axios from 'axios';
 import { translate, Trans } from 'react-i18next'
 
 class AuctionDetail extends React.Component {
@@ -18,6 +19,15 @@ class AuctionDetail extends React.Component {
             .then(response => response.json())
             .then(data => this.setState({auction: data}));
 
+    }
+
+    makeABid(){
+        axios.get('/api/auctionMakeABid/'+this.state.id)
+            .then(function (response) {
+                alert(response.data);
+                console.log(response.data);
+                window.location.reload();
+        })
     }
 
     render() {
@@ -47,6 +57,10 @@ class AuctionDetail extends React.Component {
                                 <li> <Trans i18nKey = "auction.endingTime"> </Trans> {': ' + this.state.auction.hoursFinalString}</li>
 
                             </ul>
+
+                            <button onClick={this.makeABid.bind(this)}
+                                    className="btn btn-danger"> <Trans i18nKey = "button.makeOffer"> </Trans>
+                            </button>
                         </div>
 
                     </div>
