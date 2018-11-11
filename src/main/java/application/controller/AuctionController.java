@@ -1,11 +1,15 @@
 package application.controller;
 
+import application.Aspect.LogExecutionTime;
+import application.Aspect.LogExecutionTimeAnnotation;
 import application.domain.InProgressAuction;
 import application.domain.User;
 import application.dto.AuctionDTO;
 import application.domain.Auction;
 import application.repository.AuctionRepository;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,35 +25,24 @@ import java.time.LocalTime;
 @RestController
 public class AuctionController {
 
+    static Logger logger = LoggerFactory.getLogger(LogExecutionTimeAnnotation.class);
+
     @Autowired
     private AuctionRepository repository;
 
-    @GetMapping("/auctionAll")
-    Iterable<Auction> all(){
-        return repository.findAll();
-    }
-
-    @RequestMapping("/auctionAllString")
-    public String auctionAll(){
-
-        String res = "";
-
-        for (Auction auction : repository.findAll()) {
-            res = res + " " + auction.toString();
-        }
-
-        return res;
-    }
-
+    @LogExecutionTime
     @GetMapping("/auctionList")
     public Collection<Auction> auctionList() {
+        logger.info("/////// Inside auctionList() method");
         return (Collection<Auction>) repository.findAll().stream()
                 .collect(Collectors.toList());
     }
 
+    @LogExecutionTime
     @PostMapping(path ="/auctionCreate")
     public void auctionCreate(@RequestBody AuctionDTO auction) {
 
+        logger.info("/////// Inside auctionCreate() method");
         Auction a = new Auction();
         a.setTitle(auction.getTitle());
         a.setDescription(auction.getDescription());
@@ -62,19 +55,25 @@ public class AuctionController {
 
     }
 
+    @LogExecutionTime
     @RequestMapping(method=RequestMethod.DELETE, path="/auctionDelete/{id}")
-    public void delete(@PathVariable String id) {
+    public void deleteAuction(@PathVariable String id) {
+        logger.info("/////// Inside deleteAuction() method");
         repository.deleteById(Long.parseLong(id));
     }
 
+    @LogExecutionTime
     @GetMapping("/auctionBy/{id}")
     public Optional<Auction> auctionList(@PathVariable String id) {
+        logger.info("/////// Inside auctionList() method");
         return repository.findById(Long.parseLong(id));
     }
 
+    @LogExecutionTime
     @PostMapping(path ="/auctionUpdate/{id}")
     public void auctionUpdate(@PathVariable String id, @RequestBody AuctionDTO auction) {
 
+        logger.info("/////// Inside auctionUpdate() method");
         Optional<Auction> a = repository.findById(Long.parseLong(id));
         a.get().setTitle(auction.getTitle());
         a.get().setDescription(auction.getDescription());
@@ -87,9 +86,11 @@ public class AuctionController {
         repository.save(a.get());
     }
 
+    @LogExecutionTime
     @GetMapping(path ="/auctionMakeABid/{id}")
     public String auctionMakeABid(@PathVariable String id) {
 
+        logger.info("/////// Inside auctionMakeABid() method");
         User user5 = new User("Elad","Haim","ehaim@qac.com",
                 "jlp123",new DateTime("1980-10-10"));
 
@@ -103,6 +104,5 @@ public class AuctionController {
 
         return result;
     }
-
 
 }
