@@ -33,7 +33,6 @@ public class AuctionController {
     @LogExecutionTime
     @GetMapping("/auctionList")
     public Collection<Auction> auctionList() {
-        logger.info("/////// Inside auctionList() method");
         return (Collection<Auction>) repository.findAll().stream()
                 .collect(Collectors.toList());
     }
@@ -42,7 +41,6 @@ public class AuctionController {
     @PostMapping(path ="/auctionCreate")
     public void auctionCreate(@RequestBody AuctionDTO auction) {
 
-        logger.info("/////// Inside auctionCreate() method");
         Auction a = new Auction();
         a.setTitle(auction.getTitle());
         a.setDescription(auction.getDescription());
@@ -58,14 +56,12 @@ public class AuctionController {
     @LogExecutionTime
     @RequestMapping(method=RequestMethod.DELETE, path="/auctionDelete/{id}")
     public void deleteAuction(@PathVariable String id) {
-        logger.info("/////// Inside deleteAuction() method");
         repository.deleteById(Long.parseLong(id));
     }
 
     @LogExecutionTime
     @GetMapping("/auctionBy/{id}")
     public Optional<Auction> auctionList(@PathVariable String id) {
-        logger.info("/////// Inside auctionList() method");
         return repository.findById(Long.parseLong(id));
     }
 
@@ -73,7 +69,6 @@ public class AuctionController {
     @PostMapping(path ="/auctionUpdate/{id}")
     public void auctionUpdate(@PathVariable String id, @RequestBody AuctionDTO auction) {
 
-        logger.info("/////// Inside auctionUpdate() method");
         Optional<Auction> a = repository.findById(Long.parseLong(id));
         a.get().setTitle(auction.getTitle());
         a.get().setDescription(auction.getDescription());
@@ -90,7 +85,6 @@ public class AuctionController {
     @GetMapping(path ="/auctionMakeABid/{id}")
     public String auctionMakeABid(@PathVariable String id) {
 
-        logger.info("/////// Inside auctionMakeABid() method");
         User user5 = new User("Elad","Haim","ehaim@qac.com",
                 "jlp123",new DateTime("1980-10-10"));
 
