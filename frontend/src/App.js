@@ -29,6 +29,7 @@ class App extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
+      const apiUrl = 'http://localhost:3000/api';
 
           return (
               <BrowserRouter>
