@@ -1,5 +1,6 @@
 package application.domain;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import java.util.Date;
@@ -16,18 +17,25 @@ public class AuctionHistory {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
+    private String userName;
+
     private long userId;
 
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime date;
+
+    private String dateString;
 
     private Integer sectionNumber;
 
     public AuctionHistory(){};
 
-    public AuctionHistory(long id, DateTime date,Integer section){
+    public AuctionHistory(long id,String userName, DateTime date,Integer section){
         this.userId = id;
+        this.userName = userName;
         this.date = date;
         this.sectionNumber = section;
+        this.dateString = this.date.toString();
     }
 
     public long getId() {
@@ -51,7 +59,9 @@ public class AuctionHistory {
     }
 
     public void setDate(DateTime date) {
+
         this.date = date;
+        this.dateString = this.date.toString();
     }
 
     public void setSectionNumber(Integer sectionNumber) {
@@ -62,4 +72,19 @@ public class AuctionHistory {
         return sectionNumber;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
 }

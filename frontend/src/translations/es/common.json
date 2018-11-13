@@ -25,6 +25,12 @@
     "yes" : "Si",
     "publicationDate": "Fecha de Publicación",
     "finishDate": "Fecha de Finalización",
-    "endingTime": "Hora de finalización"
+    "endingTime": "Hora de finalización",
+    "detail": "Detalles de la Subasta"
+  },
+
+  "auctionHistory":{
+    "title": "Avance de la Subasta",
+    "step": "Trama"
   }
 }

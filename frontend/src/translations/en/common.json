@@ -25,6 +25,12 @@
     "yes" : "Yes",
     "publicationDate": "Publication date",
     "finishDate": "Finish Date",
-    "endingTime": "Ending time"
+    "endingTime": "Ending time",
+    "detail": "Auction Details"
+  },
+
+  "auctionHistory":{
+    "title": "Advance of the Auction",
+    "step": "Step"
   }
 }

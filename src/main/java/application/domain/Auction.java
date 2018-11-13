@@ -54,7 +54,7 @@ public class Auction {
             cascade = CascadeType.ALL
     )
     @JoinColumn(name = "auctionhistory_id")
-    private List<AuctionHistory> history;
+    private List<AuctionHistory> history = new ArrayList<AuctionHistory>();
 
     public Auction(){};
 
@@ -72,7 +72,7 @@ public class Auction {
         this.state = new NewAuction();
         this.autoBid = priceInit;
         this.currentWinner = owner;
-        this.history = new ArrayList<>();
+        this.history = new ArrayList<AuctionHistory>();
         this.dateInitString = this.dateInit.toString();
         this.dateFinalString = this.dateFinal.toString();
         this.hoursFinalString = this.hoursFinal.toString();
@@ -119,19 +119,22 @@ public class Auction {
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
                 this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
-                //this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
+                this.addNewBid(1,user.getName(),DateTime.now(),this.lastSectionNumber() + 1);
             } else {
 
                 this.setPriceInit(nextBid);
                 this.setCurrentWinner(user);
                 this.setAutoBid(autoBid);
-                //this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
+                System.out.println ("userId: " + user.getId());
+                System.out.println ("date: " + DateTime.now());
+
+                this.addNewBid(1,user.getName(),DateTime.now(),this.lastSectionNumber() + 1);
             }
 
         } else {
 
             this.setPriceInit(nextBid);
-            //this.addNewBid(user.getId(),DateTime.now(),this.lastSectionNumber() + 1);
+            this.addNewBid(1,user.getName(),DateTime.now(),this.lastSectionNumber() + 1);
         }
         return "Oferta realizada";
     }
@@ -270,9 +273,10 @@ public class Auction {
         this.id = id;
     }
 
-    public void addNewBid(long userId,DateTime date,Integer section){
-            AuctionHistory newHistory = new AuctionHistory(userId, date, section);
-            this.history.add(newHistory);
+    public void addNewBid(long userId,String userName,DateTime date,Integer section){
+
+        AuctionHistory newHistory = new AuctionHistory(userId, userName, date, section);
+        this.history.add(newHistory);
     }
 
     public int lastSectionNumber(){

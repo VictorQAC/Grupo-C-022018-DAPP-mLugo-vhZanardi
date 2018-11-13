@@ -2,6 +2,7 @@ package application.controller;
 
 import application.Aspect.LogExecutionTime;
 import application.Aspect.LogExecutionTimeAnnotation;
+import application.domain.AuctionHistory;
 import application.domain.InProgressAuction;
 import application.domain.User;
 import application.dto.AuctionDTO;
@@ -17,9 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.time.LocalTime;
 
 @Transactional
 @RestController
@@ -50,7 +51,6 @@ public class AuctionController {
         a.setDateFinal(new DateTime(auction.getDateFinal()));
         a.setHoursFinal(LocalTime.parse(auction.getHoursFinal()));
         repository.save(a);
-
     }
 
     @LogExecutionTime
@@ -61,8 +61,18 @@ public class AuctionController {
 
     @LogExecutionTime
     @GetMapping("/auctionBy/{id}")
-    public Optional<Auction> auctionList(@PathVariable String id) {
+    public Optional<Auction> auctionBy(@PathVariable String id) {
         return repository.findById(Long.parseLong(id));
+    }
+
+    @LogExecutionTime
+    @GetMapping("/auctionHistoryBy/{id}")
+    public Collection<AuctionHistory> auctionHistoryBy(@PathVariable String id) {
+        return repository.findById(Long.parseLong(id))
+                .get()
+                .getAuctionHistory()
+                .stream()
+                .collect(Collectors.toList());
     }
 
     @LogExecutionTime

@@ -9,7 +9,8 @@ class AuctionDetail extends React.Component {
         super(props);
         this.state = {
             auction: {},
-            id: this.props.match.params.id
+            id: this.props.match.params.id,
+            history: []
         };
     }
 
@@ -18,6 +19,10 @@ class AuctionDetail extends React.Component {
         fetch('/api/auctionBy/'+this.state.id)
             .then(response => response.json())
             .then(data => this.setState({auction: data}));
+
+        fetch('/api/auctionHistoryBy/'+this.state.id)
+            .then(response => response.json())
+            .then(data => this.setState({history: data}));
 
     }
 
@@ -32,6 +37,8 @@ class AuctionDetail extends React.Component {
 
     render() {
 
+        const {auction, id, history} = this.state;
+
         return(
             <div>
 
@@ -39,6 +46,8 @@ class AuctionDetail extends React.Component {
 
                     <h1 class="my-4">{this.state.auction.title}
                     </h1>
+                    {console.log(this.state.auction)}
+                    {console.log(this.state.history)}
 
                     <div class="row">
 
@@ -47,20 +56,26 @@ class AuctionDetail extends React.Component {
                         </div>
 
                         <div class="col-md-4">
-                            <h3 class="my-3"><Trans i18nKey ="auction.descriptionAuction">Auction Description</Trans> {': '}</h3>
+                            <h3 class="my-3"><Trans i18nKey ="auction.descriptionAuction"> </Trans> {': '}</h3>
                             <p>{this.state.auction.description}</p>
-                            <h3 class="my-3">Auction Details</h3>
+                            <h3 class="my-3"> <Trans i18nKey ="auction.detail"> </Trans></h3>
                             <ul>
                                 <li> <Trans i18nKey = "auction.priceAuction"> </Trans> {': ' + this.state.auction.priceInit}</li>
                                 <li> <Trans i18nKey = "auction.publicationDate"> </Trans> {': ' + this.state.auction.dateInitString}</li>
                                 <li> <Trans i18nKey = "auction.finishDate"> </Trans> {': ' + this.state.auction.dateFinalString}</li>
                                 <li> <Trans i18nKey = "auction.endingTime"> </Trans> {': ' + this.state.auction.hoursFinalString}</li>
-
                             </ul>
 
                             <button onClick={this.makeABid.bind(this)}
                                     className="btn btn-danger"> <Trans i18nKey = "button.makeOffer"> </Trans>
                             </button>
+
+                            <h3 className="my-3"> <Trans i18nKey = "auctionHistory.title"> </Trans></h3>
+                            <ul>
+                                {history.map((step) =>
+                                    <li>{'User: ' + step.userName + ' Step: ' + step.sectionNumber + ' Date: ' + step.dateString} </li>
+                                )}
+                            </ul>
                         </div>
 
                     </div>
