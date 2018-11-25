@@ -29,9 +29,18 @@ class AuctionList extends React.Component {
     componentDidMount() {
         this.setState({isLoading: true});
 
-        fetch('/api/auctionList')
-            .then(response => response.json())
-            .then(data => this.setState({auctions: data, isLoading: false}));
+        if (localStorage.getItem("access_token") == null) {
+            alert("Please log in to continue");
+        }
+        else
+        {
+            const {auth_token} = localStorage.getItem("access_token");
+            let header_obj = {'Authorization': auth_token};
+            fetch('/api/auctionList',{headers:header_obj})
+                .then(response => response.json())
+                .then(data => this.setState({auctions: data, isLoading: false}));
+        }
+
     }
 
     delete(id){
@@ -41,7 +50,6 @@ class AuctionList extends React.Component {
     render() {
 
         const {auctions, isLoading} = this.state;
-
         if (isLoading) {
             return <p>Loading...</p>;
         }

@@ -2,8 +2,11 @@ package application.controller;
 
 import application.domain.User;
 import application.repository.UserRepository;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -27,6 +30,13 @@ public class UserController {
         return repository.findById(id);
     }
 
+    @GetMapping("/userBy/{name}")
+    User one(@PathVariable String name) {
+
+        return repository.findByName(name);
+    }
+
+
     @RequestMapping("/usersAllString")
     public String userAll(){
 
@@ -38,6 +48,19 @@ public class UserController {
 
         return res;
     }
+
+    @PostMapping(path ="/userCreate")
+    public void userCreate(@RequestBody User user) {
+
+        User usr = new User();
+        usr.setName(user.getName());
+        usr.setLastName(user.getLastName());
+        usr.setEmail(user.getEmail());
+        usr.setBirthdate(usr.getBirthdate());
+        usr.setPassword(" ");
+        repository.save(usr);
+    }
+
 
     @GetMapping("/good-users")
     @CrossOrigin(origins = "http://localhost:3000")

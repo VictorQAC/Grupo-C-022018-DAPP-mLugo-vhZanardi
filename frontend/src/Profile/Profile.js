@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
-import './Profile.css';
 
 class Profile extends Component {
+
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -14,6 +14,7 @@ class Profile extends Component {
             this.setState({ profile: userProfile });
         }
     }
+
     render() {
         const { profile } = this.state;
         return (

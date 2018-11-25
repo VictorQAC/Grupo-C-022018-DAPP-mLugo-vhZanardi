@@ -14,9 +14,12 @@ import { BrowserRouter, Route, Switch,Redirect} from 'react-router-dom';
 import { translate} from 'react-i18next';
 import DropdownButton from './componet/DropdownButton';
 import { Navbar, Button } from 'react-bootstrap';
+import Login from "./componet/Login";
 
 class App extends Component {
-  goTo(route) {
+
+
+    goTo(route) {
     this.props.history.replace(`/${route}`)
   }
 
@@ -28,9 +31,7 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
-      const apiUrl = 'http://localhost:3000/api';
-
+    const { isAuthenticated} = this.props.auth;
           return (
               <BrowserRouter>
               <div>
@@ -113,12 +114,6 @@ class App extends Component {
                                   to="/home"
                               />
                           )}
-
-                      {!isAuthenticated() && (
-                          this.login.bind(this)
-                      )
-
-                      }
                       <Switch>
                           <Route
                               path="/home"
@@ -151,6 +146,7 @@ class App extends Component {
           </BrowserRouter>
       );
    }
+
 }
 
 export default translate('common')(App);

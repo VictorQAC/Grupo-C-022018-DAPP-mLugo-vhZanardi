@@ -15,8 +15,9 @@ class AuctionEdit extends React.Component {
     }
 
     componentDidMount() {
-
-        fetch('/api/auctionBy/'+this.state.id)
+        const {auth_token} = localStorage.getItem("access_token")
+        let header_obj = {'Authorization': auth_token};
+        fetch('/api/auctionBy/'+this.state.id,{headers:header_obj})
             .then(response => response.json())
             .then(data => this.setState({auction: data}));
 
@@ -29,8 +30,10 @@ class AuctionEdit extends React.Component {
     };
 
     handleSubmit(event){
+        const {auth_token} = localStorage.getItem("access_token")
+        let header_obj = {'Authorization': auth_token};
         event.preventDefault();
-        axios.post('/api/auctionUpdate/'+this.state.id,this.state.auction);
+        axios.post('/api/auctionUpdate/'+this.state.id,this.state.auction,{headers:header_obj});
     }
 
     render() {

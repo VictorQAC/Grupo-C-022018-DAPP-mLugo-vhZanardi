@@ -24,7 +24,9 @@ class AuctionCreate extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('/api/auctionCreate',this.state.auction);
+        const {auth_token} = localStorage.getItem("access_token")
+        let header_obj = {'Authorization': auth_token};
+        axios.post('api/auctionCreate',{headers:header_obj},this.state.auction);
         console.log(this.state.auction);
     }
 
