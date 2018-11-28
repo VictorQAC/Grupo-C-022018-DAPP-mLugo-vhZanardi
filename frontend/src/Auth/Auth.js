@@ -45,7 +45,7 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    localStorage.setItem('profile',this.auth0.username);
+    localStorage.setItem('profile',authResult.profile);
     // navigate to the home route
     history.replace('/home');
   }

@@ -5,6 +5,7 @@ import { translate, Trans } from 'react-i18next'
 import {ControlLabel, Glyphicon, Panel} from "react-bootstrap";
 import {Component} from "react";
 import Profile from "../Profile/Profile";
+import { BrowserRouter, Route, Switch,Redirect} from 'react-router-dom';
 
 
 class AuctionDetail extends Component {
@@ -15,13 +16,11 @@ class AuctionDetail extends Component {
             auction: {},
             id: this.props.match.params.id,
             history: [],
-    };
-
+        };
     }
 
     componentWillMount(){
         this.setState({profile: localStorage.getItem('profile')})
-
     }
 
     componentDidMount() {

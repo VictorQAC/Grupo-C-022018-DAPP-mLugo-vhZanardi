@@ -18,17 +18,31 @@ import Login from "./componet/Login";
 
 class App extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:{}
+        };
+    }
 
     goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
+        this.props.history.replace(`/${route}`)
+    }
 
-  login() {
-    this.props.auth.login();
-  }
-  logout() {
-    this.props.auth.logout();
-  }
+    login() {
+        this.props.auth.login();
+    }
+
+    logout() {
+        this.props.auth.logout();
+    }
+
+    componentDidMount() {
+
+        fetch('/api/userBy/blabla')
+            .then(response => response.json())
+            .then(data => this.setState({user: data}));
+    }
 
   render() {
     const { isAuthenticated} = this.props.auth;
@@ -50,7 +64,7 @@ class App extends Component {
                               <a className="navbar-brand" href="/home">SubastARG</a>
                           )}
                           {!isAuthenticated() && (
-                              <a className="navbar-brand" href="/callback">SubastARG</a>
+                              <a className="navbar-brand" href="/home">SubastARG</a>
                           )
                           }
                           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +77,7 @@ class App extends Component {
                                           <a className="nav-link" href="/home">Home</a>
                                       )}
                                     {!isAuthenticated() && (
-                                        <a className="nav-link" href="/callback">Home</a>
+                                        <a className="nav-link" href="/home">Home</a>
                                         )
                                       }
                                   <span className="sr-only">(current)</span>
@@ -108,12 +122,26 @@ class App extends Component {
                   <div className="container">
                       {/* Jumbotron Header */}
 
-                          {isAuthenticated() && (
+                          {isAuthenticated() && this.state.user != null && (
                               <Redirect
                                   from = ""
                                   to="/home"
                               />
                           )}
+
+                      {isAuthenticated() && this.state.user == null && (
+                          <Redirect
+                              from = ""
+                              to="/login"
+                          />
+                      )}
+
+                      <Switch>
+                          <Route
+                              path="/login"
+                              render={() => <Login/>} />
+                      </Switch>
+
                       <Switch>
                           <Route
                               path="/home"

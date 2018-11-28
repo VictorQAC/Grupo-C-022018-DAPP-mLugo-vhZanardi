@@ -1,6 +1,9 @@
 package application.controller;
 
+import application.Aspect.LogExecutionTime;
+import application.domain.Auction;
 import application.domain.User;
+import application.dto.UserDTO;
 import application.repository.UserRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,54 +22,21 @@ public class UserController {
     private UserRepository repository;
 
 
-    @GetMapping("/usersAll")
-    Iterable<User> all(){
-        return repository.findAll();
-    }
-
-    @GetMapping("/user/{id}")
-    Optional<User> one(@PathVariable Long id) {
-
-        return repository.findById(id);
-    }
-
     @GetMapping("/userBy/{name}")
-    User one(@PathVariable String name) {
+    User findByNickName1(@PathVariable String name) {
 
-        return repository.findByName(name);
-    }
-
-
-    @RequestMapping("/usersAllString")
-    public String userAll(){
-
-        String res = "";
-
-        for (User customer : repository.findAll()) {
-            res = res + " " + customer.toString();
-        }
-
-        return res;
+        return repository.findByNickName(name);
     }
 
     @PostMapping(path ="/userCreate")
-    public void userCreate(@RequestBody User user) {
+    public void userCreate(@RequestBody UserDTO user) {
 
         User usr = new User();
         usr.setName(user.getName());
         usr.setLastName(user.getLastName());
         usr.setEmail(user.getEmail());
-        usr.setBirthdate(usr.getBirthdate());
-        usr.setPassword(" ");
+        usr.setNickName(user.getNickName());
         repository.save(usr);
-    }
-
-
-    @GetMapping("/good-users")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public Collection<User> goodBeers() {
-        return (Collection<User>) repository.findAll().stream()
-                .collect(Collectors.toList());
     }
 
 }

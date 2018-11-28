@@ -20,6 +20,7 @@ public class User {
     private String password;
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime birthdate;
+    private String nickName;
 
     public User (){};
 
@@ -35,6 +36,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.birthdate = birthdate;
+        this.nickName = name+lastName;
     }
 
     public void setId(Long id) {
@@ -83,6 +85,14 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     @Override
