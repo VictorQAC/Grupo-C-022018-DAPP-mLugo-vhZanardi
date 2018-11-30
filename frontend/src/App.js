@@ -38,7 +38,7 @@ class App extends Component {
         this.props.auth.logout();
     }
 
-    componentWillMount() {
+    componentWillReceiveProps() {
 
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -49,11 +49,10 @@ class App extends Component {
             });
         } else {
             this.setState({ profile: userProfile });
-            this.setState({ nickNameLogin: profile.nickname});
+            this.setState({ nickNameLogin: userProfile.nickname});
         }
-    }
 
-    componentDidMount() {
+        console.log(this.state);
 
         //ACA LE PASARIA A LA URL EL nickNameLogin
         fetch('/api/userBy/blabla')
@@ -179,22 +178,6 @@ class App extends Component {
                       </Switch>
 
                   </div>
-
-                  return (
-                  <div className="container">
-                      <div className="profile-area">
-                          <h1>{profile.name}</h1>
-                          <Panel header="Profile">
-                              <img src={profile.picture} alt="profile" />
-                              <div>
-                                  <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
-                                  <h3>{profile.nickname}</h3>
-                              </div>
-                              <pre>{JSON.stringify(profile, null, 2)}</pre>
-                          </Panel>
-                      </div>
-                  </div>
-                  );
 
                   {/* Footer */}
                   <footer className="py-5 bg-dark">
