@@ -25,8 +25,22 @@ public class UserController {
     @GetMapping("/userBy/{name}")
     User findByNickName1(@PathVariable String name) {
 
-        return repository.findByNickName(name);
+        User res = repository.findByNickName(name);
+
+        if (res != null) {
+            return repository.findByNickName(name);
+        } else {
+            return new User();
+        }
+
     }
+
+    @GetMapping(path="/userList")
+    public Collection<User> auctionList() {
+        return (Collection<User>) repository.findAll().stream()
+                .collect(Collectors.toList());
+    }
+
 
     @PostMapping(path ="/userCreate")
     public void userCreate(@RequestBody UserDTO user) {

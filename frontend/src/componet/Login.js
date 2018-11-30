@@ -13,7 +13,8 @@ class Login extends React.Component {
                 lastName: undefined,
                 email: undefined,
                 nickName: undefined
-            }
+            },
+            nick: undefined
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -49,9 +50,14 @@ class Login extends React.Component {
                             <input id="lastName" name="lastName"  required="required" class="form" value={this.state.user.lastName} type="text"  onChange={this.updateState.bind(this,'lastName')}/>
                             <br/>
 
-                            <label htmlFor="priceInit">email</label>
+                            <label htmlFor="priceInit">Email</label>
                             <input id="email" name="email"  required="required" class="form" value={this.state.user.email} type="text" onChange={this.updateState.bind(this,'email')} />
                             <br/>
+
+                            <label htmlFor="nickName">Nick Name</label>
+                            <input id="nickName" name="nickName" required="required" className="form" value={this.state.user.nickName} type="text" onChange={this.updateState.bind(this, 'nickName')}/>
+                            <br/>
+
 
                         </div>
 

@@ -21,7 +21,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{}
+            user:{},
+            nickNameLogin: undefined
         };
     }
 
@@ -37,8 +38,24 @@ class App extends Component {
         this.props.auth.logout();
     }
 
+    componentWillMount() {
+
+        this.setState({ profile: {} });
+        const { userProfile, getProfile } = this.props.auth;
+        if (!userProfile) {
+            getProfile((err, profile) => {
+                this.setState({ profile });
+                this.setState({ nickNameLogin: profile.nickname});
+            });
+        } else {
+            this.setState({ profile: userProfile });
+            this.setState({ nickNameLogin: profile.nickname});
+        }
+    }
+
     componentDidMount() {
 
+        //ACA LE PASARIA A LA URL EL nickNameLogin
         fetch('/api/userBy/blabla')
             .then(response => response.json())
             .then(data => this.setState({user: data}));
@@ -46,6 +63,7 @@ class App extends Component {
 
   render() {
     const { isAuthenticated} = this.props.auth;
+      const { profile } = this.state;
           return (
               <BrowserRouter>
               <div>
@@ -161,6 +179,22 @@ class App extends Component {
                       </Switch>
 
                   </div>
+
+                  return (
+                  <div className="container">
+                      <div className="profile-area">
+                          <h1>{profile.name}</h1>
+                          <Panel header="Profile">
+                              <img src={profile.picture} alt="profile" />
+                              <div>
+                                  <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
+                                  <h3>{profile.nickname}</h3>
+                              </div>
+                              <pre>{JSON.stringify(profile, null, 2)}</pre>
+                          </Panel>
+                      </div>
+                  </div>
+                  );
 
                   {/* Footer */}
                   <footer className="py-5 bg-dark">
