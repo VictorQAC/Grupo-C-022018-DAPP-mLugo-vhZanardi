@@ -22,7 +22,8 @@ class AuctionList extends React.Component {
 
         this.state = {
             auctions: [],
-            isLoading: false
+            isLoading: false,
+            nickNameLogin: this.props.nickNameLogin
         };
     }
 
@@ -50,9 +51,6 @@ class AuctionList extends React.Component {
     render() {
 
         const {auctions, isLoading} = this.state;
-        if (isLoading) {
-            return <p>Loading...</p>;
-        }
 
         return (
                 <div>

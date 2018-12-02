@@ -32,5 +32,14 @@
   "auctionHistory":{
     "title": "Advance of the Auction",
     "step": "Step"
+  },
+
+  "register":{
+    "title": "Create an account",
+    "name": "Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "nickName": "Nick Name",
+    "button": "Create account"
   }
 }

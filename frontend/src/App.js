@@ -14,7 +14,7 @@ import { BrowserRouter, Route, Switch,Redirect} from 'react-router-dom';
 import { translate} from 'react-i18next';
 import DropdownButton from './componet/DropdownButton';
 import { Navbar, Button } from 'react-bootstrap';
-import Login from "./componet/Login";
+import Register from "./componet/Register";
 
 class App extends Component {
 
@@ -38,7 +38,7 @@ class App extends Component {
         this.props.auth.logout();
     }
 
-    componentWillReceiveProps() {
+    /*componentWillReceiveProps() {
 
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -58,14 +58,49 @@ class App extends Component {
         fetch('/api/userBy/blabla')
             .then(response => response.json())
             .then(data => this.setState({user: data}));
+    }*/
+
+    componentWillReceiveProps(){//componentwillreciveprops
+
+        if(this.props.auth.isAuthenticated()){
+            this.props.auth.getProfile((err,profile) => {
+
+                this.setState({nickNameLogin:profile.nickname});
+
+                fetch('/api/userBy/'+ profile.nickname.toString())
+                    .then(response => response.json())
+                    .then(data => this.setState({user: data}));
+
+            })
+        }
     }
 
   render() {
     const { isAuthenticated} = this.props.auth;
-      const { profile } = this.state;
+
           return (
               <BrowserRouter>
               <div>
+                  {console.log('nickNameLogin:' + this.state.nickNameLogin)}
+                  {console.log('this.state.user.nickName:' + this.state.user.nickName)}
+                  {isAuthenticated() && this.state.nickNameLogin == this.state.user.nickName &&(
+                      <Redirect
+                          from = ""
+                          to="/home"
+                      />
+                  )}
+
+                  {isAuthenticated() && this.state.nickNameLogin != this.state.user.nickName &&(
+                      <Redirect
+                          from = ""
+                          to="/register"
+                      />
+                  )}
+
+                  {!isAuthenticated() &&(
+                      this.login.bind(this)
+                  )}
+
                   <meta charSet="utf-8" />
                   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                   <meta name="description" content />
@@ -77,11 +112,16 @@ class App extends Component {
                   {/* Navigation */}
                   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                       <div className="container">
-                          {isAuthenticated() && (
+                          {isAuthenticated() && this.state.nickNameLogin == this.state.user.nickName && (
                               <a className="navbar-brand" href="/home">SubastARG</a>
                           )}
+
+                          {isAuthenticated() && this.state.nickNameLogin != this.state.user.nickName && (
+                              <a className="navbar-brand" href="/register">SubastARG</a>
+                          )}
+
                           {!isAuthenticated() && (
-                              <a className="navbar-brand" href="/home">SubastARG</a>
+                              <a className="navbar-brand" href="/register">SubastARG</a>
                           )
                           }
                           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,11 +130,16 @@ class App extends Component {
                           <div className="collapse navbar-collapse" id="navbarResponsive">
                               <ul className="navbar-nav ml-auto">
                                   <li className="nav-item active">
-                                      {isAuthenticated() && (
+                                      {isAuthenticated() && this.state.nickNameLogin == this.state.user.nickName && (
                                           <a className="nav-link" href="/home">Home</a>
                                       )}
+
+                                      {isAuthenticated() && this.state.nickNameLogin != this.state.user.nickName && (
+                                          <a className="nav-link" href="/register">Home</a>
+                                      )}
+
                                     {!isAuthenticated() && (
-                                        <a className="nav-link" href="/home">Home</a>
+                                        <a className="nav-link" href="/register">Home</a>
                                         )
                                       }
                                   <span className="sr-only">(current)</span>
@@ -139,36 +184,22 @@ class App extends Component {
                   <div className="container">
                       {/* Jumbotron Header */}
 
-                          {isAuthenticated() && this.state.user != null && (
-                              <Redirect
-                                  from = ""
-                                  to="/home"
-                              />
-                          )}
-
-                      {isAuthenticated() && this.state.user == null && (
-                          <Redirect
-                              from = ""
-                              to="/login"
-                          />
-                      )}
-
                       <Switch>
                           <Route
-                              path="/login"
-                              render={() => <Login/>} />
+                              path="/register"
+                              render={() => <Register nickNameLogin={this.state.nickNameLogin}/>} />
                       </Switch>
 
                       <Switch>
                           <Route
                               path="/home"
-                              render={() => <AuctionList/>} />
+                              render={() => <AuctionList nickNameLogin={this.state.nickNameLogin}/>} />
                       </Switch>
 
                       <Switch>
                           <Route
                               path="/auctionDetail/:id"
-                              render={(props) => <AuctionDetail {...props} />} />
+                              render={(props) => <AuctionDetail {...props} nickNameLogin={this.state.nickNameLogin} />} />
                       </Switch>
 
                       <Switch>

@@ -32,5 +32,14 @@
   "auctionHistory":{
     "title": "Avance de la Subasta",
     "step": "Trama"
+  },
+
+  "register":{
+    "title": "Abrir una cuenta",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electronico",
+    "nickName": "Nick Name",
+    "button": "Crear Cuenta"
   }
 }

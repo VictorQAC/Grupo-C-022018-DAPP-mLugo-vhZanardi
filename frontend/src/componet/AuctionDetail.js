@@ -16,6 +16,7 @@ class AuctionDetail extends Component {
             auction: {},
             id: this.props.match.params.id,
             history: [],
+            nickNameLogin: this.props.nickNameLogin
         };
     }
 
@@ -69,8 +70,6 @@ class AuctionDetail extends Component {
                 <div class="container">
                     <h1 class="my-4">{this.state.auction.title}
                     </h1>
-                    {console.log(this.state.auction)}
-                    {console.log(this.state.history)}
 
                     <div class="row">
 
