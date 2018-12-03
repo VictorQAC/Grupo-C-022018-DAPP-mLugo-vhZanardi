@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo_subastas.png';
 import './App.css';
 import './Button.css';
 import './css/template.css';
@@ -81,8 +80,6 @@ class App extends Component {
           return (
               <BrowserRouter>
               <div>
-                  {console.log('nickNameLogin:' + this.state.nickNameLogin)}
-                  {console.log('this.state.user.nickName:' + this.state.user.nickName)}
                   {isAuthenticated() && this.state.nickNameLogin == this.state.user.nickName &&(
                       <Redirect
                           from = ""
@@ -112,18 +109,14 @@ class App extends Component {
                   {/* Navigation */}
                   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                       <div className="container">
-                          {isAuthenticated() && this.state.nickNameLogin == this.state.user.nickName && (
-                              <a className="navbar-brand" href="/home">SubastARG</a>
-                          )}
-
-                          {isAuthenticated() && this.state.nickNameLogin != this.state.user.nickName && (
-                              <a className="navbar-brand" href="/register">SubastARG</a>
+                          {isAuthenticated() && (
+                              <a className="navbar-brand" href= "/home" >SubastARG</a>
                           )}
 
                           {!isAuthenticated() && (
                               <a className="navbar-brand" href="/register">SubastARG</a>
-                          )
-                          }
+                          )}
+
                           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                               <span className="navbar-toggler-icon" />
                           </button>
@@ -199,7 +192,7 @@ class App extends Component {
                       <Switch>
                           <Route
                               path="/auctionDetail/:id"
-                              render={(props) => <AuctionDetail {...props} nickNameLogin={this.state.nickNameLogin} />} />
+                              render={(props) => <AuctionDetail auth={this.props.auth}  {...props}/>} />
                       </Switch>
 
                       <Switch>

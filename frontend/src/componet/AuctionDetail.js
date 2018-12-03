@@ -7,7 +7,6 @@ import {Component} from "react";
 import Profile from "../Profile/Profile";
 import { BrowserRouter, Route, Switch,Redirect} from 'react-router-dom';
 
-
 class AuctionDetail extends Component {
 
     constructor(props) {
@@ -16,12 +15,10 @@ class AuctionDetail extends Component {
             auction: {},
             id: this.props.match.params.id,
             history: [],
-            nickNameLogin: this.props.nickNameLogin
+            nickNameLogin: undefined,
+            user: {},
+            auth: this.props.auth
         };
-    }
-
-    componentWillMount(){
-        this.setState({profile: localStorage.getItem('profile')})
     }
 
     componentDidMount() {
@@ -40,6 +37,18 @@ class AuctionDetail extends Component {
             fetch('/api/auctionHistoryBy/'+this.state.id,{headers:header_obj})
             .then(response => response.json())
             .then(data => this.setState({history: data}));
+
+            if(this.state.auth.isAuthenticated()){
+                this.state.auth.getProfile((err,profile) => {
+
+                    this.setState({nickNameLogin:profile.nickname});
+
+                    fetch('/api/userBy/'+ profile.nickname.toString())
+                        .then(response => response.json())
+                        .then(data => this.setState({user: data}));
+
+                })
+            }
         }
     }
 
@@ -51,7 +60,7 @@ class AuctionDetail extends Component {
             const {auth_token} = localStorage.getItem("access_token")
             let header_obj = {'Authorization': auth_token};
 
-            axios.get('/api/auctionMakeABid/' + this.state.id, {headers: header_obj})
+            axios.get('/api/auctionMakeABid/' + this.state.id + '/' + this.state.nickNameLogin, {headers: header_obj})
                 .then(function (response) {
                     alert(response.data);
                     console.log(response.data);
@@ -63,14 +72,13 @@ class AuctionDetail extends Component {
     render() {
 
         const {auction, id, history} = this.state;
-        const { profile } = this.state;
 
         return(
             <div>
                 <div class="container">
                     <h1 class="my-4">{this.state.auction.title}
                     </h1>
-
+                    {console.log(this.state.nickNameLogin)}
                     <div class="row">
 
                         <div class="col-md-8">
@@ -80,7 +88,6 @@ class AuctionDetail extends Component {
                         <div class="col-md-4">
                             <h3 class="my-3"><Trans i18nKey ="auction.descriptionAuction"> </Trans> {': '}</h3>
                             <p>{this.state.auction.description}</p>
-                            <h1>{profile}</h1>
 
                             <h3 class="my-3"> <Trans i18nKey ="auction.detail"> </Trans></h3>
                             <ul>

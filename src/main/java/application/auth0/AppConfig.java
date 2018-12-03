@@ -51,6 +51,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/auctionDelete/{id}").authenticated()
                 .antMatchers(HttpMethod.GET,"/api/auctionBy/{id}").authenticated()
                 .antMatchers(HttpMethod.POST,"/api/auctionUpdate/{id}").authenticated()
-                .antMatchers(HttpMethod.GET,"/api/auctionMakeABid/{id}").authenticated();
+                .antMatchers(HttpMethod.GET,"/api/auctionMakeABid/{id}/{nickName}").authenticated();
      }
 }

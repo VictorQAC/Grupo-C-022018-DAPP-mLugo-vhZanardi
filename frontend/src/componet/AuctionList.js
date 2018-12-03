@@ -62,7 +62,6 @@ class AuctionList extends React.Component {
                         </p>
                         <Link to= {"/auctionCreate"} className="btn btn-primary"><Trans i18nKey="button.createAuction">Create Auction</Trans></Link>
                     </header>
-
                     <div className="row text-center">
                     {auctions.map((auction) =>
                                 <div className="col-lg-3 col-md-6 mb-4" key={auction.id}>

@@ -8,6 +8,7 @@ import application.domain.User;
 import application.dto.AuctionDTO;
 import application.domain.Auction;
 import application.repository.AuctionRepository;
+import application.repository.UserRepository;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ public class AuctionController {
 
     @Autowired
     private AuctionRepository repository;
+    @Autowired
+    private UserRepository userRepository;
 
     @LogExecutionTime
     @GetMapping(path="/auctionList")
@@ -93,17 +96,19 @@ public class AuctionController {
     }
 
     @LogExecutionTime
-    @GetMapping(path ="/auctionMakeABid/{id}")
-    public String auctionMakeABid(@PathVariable String id) {
+    @GetMapping(path ="/auctionMakeABid/{id}/{nickName}")
+    public String auctionMakeABid(@PathVariable String id,@PathVariable String nickName) {
 
-        User user5 = new User("Elad","Haim","ehaim@qac.com",
-                "jlp123",new DateTime("1980-10-10"));
+        User res = userRepository.findByNickName(nickName);
+
+        /*User user5 = new User("Elad","Haim","ehaim@qac.com",
+                "jlp123",new DateTime("1980-10-10"));*/
 
         Optional<Auction> a = repository.findById(Long.parseLong(id));
 
         a.get().setState(new InProgressAuction());
 
-        String result = a.get().makeABid(user5,1000);
+        String result = a.get().makeABid(res,1000);
 
         repository.save(a.get());
 

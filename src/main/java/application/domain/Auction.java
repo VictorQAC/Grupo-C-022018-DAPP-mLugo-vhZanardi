@@ -100,16 +100,16 @@ public class Auction {
     }
 
     public Boolean isCurrentWinner(User user){
-        return user.getName() == this.getCurrentWinner().getName();
+        return user.getNickName() == this.getCurrentWinner().getNickName();
     }
 
     public String makeABid(User user, double autoBid){
 
         double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
 
-        /*if(this.isCurrentWinner(user) || !this.getState().isInProgress()){
+        if(this.isCurrentWinner(user) || !this.getState().isInProgress()){
             return "No se puede ofertar";
-        }*/
+        }
 
         if(this.getAutoBid() < nextBid){
 

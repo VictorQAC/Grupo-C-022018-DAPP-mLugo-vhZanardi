@@ -21,7 +21,6 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-
     @GetMapping("/userBy/{name}")
     User findByNickName1(@PathVariable String name) {
 
