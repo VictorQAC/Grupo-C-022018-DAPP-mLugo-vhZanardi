@@ -36,28 +36,6 @@ class App extends Component {
         this.props.auth.logout();
     }
 
-    /*componentWillReceiveProps() {
-
-        this.setState({ profile: {} });
-        const { userProfile, getProfile } = this.props.auth;
-        if (!userProfile) {
-            getProfile((err, profile) => {
-                this.setState({ profile });
-                this.setState({ nickNameLogin: profile.nickname});
-            });
-        } else {
-            this.setState({ profile: userProfile });
-            this.setState({ nickNameLogin: userProfile.nickname});
-        }
-
-        console.log(this.state);
-
-        //ACA LE PASARIA A LA URL EL nickNameLogin
-        fetch('/api/userBy/blabla')
-            .then(response => response.json())
-            .then(data => this.setState({user: data}));
-    }*/
-
     componentWillReceiveProps(){
 
         if(this.props.auth.isAuthenticated()){
@@ -109,7 +87,7 @@ class App extends Component {
                           )}
 
                           {!isAuthenticated() && (
-                              <a className="navbar-brand" href="/register">SubastARG</a>
+                              <a className="navbar-brand" href="/home">SubastARG</a>
                           )}
 
                           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,17 +101,14 @@ class App extends Component {
                                       )}
 
                                       {isAuthenticated() && this.state.nickNameLogin != this.state.user.nickName && (
-                                          <a className="nav-link" href="/register">Home</a>
+                                          <a className="nav-link" href="/home">Home</a>
                                       )}
 
                                     {!isAuthenticated() && (
-                                        <a className="nav-link" href="/register">Home</a>
+                                        <a className="nav-link" href="/home">Home</a>
                                         )
                                       }
                                   <span className="sr-only">(current)</span>
-                                  </li>
-                                  <li className="nav-item">
-                                      <a className="nav-link" href="#">About</a>
                                   </li>
                                   <li className="nav-item">
                                       {
