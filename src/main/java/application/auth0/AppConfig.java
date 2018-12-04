@@ -1,6 +1,5 @@
 package application.auth0;
 
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

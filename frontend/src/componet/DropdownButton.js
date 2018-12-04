@@ -31,6 +31,7 @@ class Dropdown extends React.Component {
 
     }
 
+
     render() {
         const {i18n} = this.props;
         return (
@@ -38,12 +39,12 @@ class Dropdown extends React.Component {
                 <DropdownButton title={<Trans i18nKey="button.language">Language</Trans>} bsStyle={'dropdown-basic-primary'} onClick={this.showDropdownMenu}>
                 </DropdownButton>
                 { this.state.displayMenu ? (
-                            <MenuItem>
-                                <button className="button" style={{background:"grey"}} onClick={() => i18n.changeLanguage('es')} >Español
+                        <MenuItem>
+                            <button className="button" style={{background:"grey"}} onClick={() => i18n.changeLanguage('es')} >Español
                             </button>
                             <button className="button" style={{background:"grey"}} onClick={() => i18n.changeLanguage('en')}>English
                             </button>
-                            </MenuItem>
+                        </MenuItem>
 
                     ):
                     (

@@ -23,7 +23,6 @@ export const makeMainRoutes = () => {
         <Router history={history} component={App}>
             <div>
                 <Route path="/" render={(props) => <I18nextProvider i18n={i18next}><App auth={auth} {...props}/></I18nextProvider>} />
-                <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
                 <Route path="/profile" render={(props) => (
                     !auth.isAuthenticated() ? (
                         <Redirect to="/home"/>

@@ -7,7 +7,6 @@ import './bootstrap/css/bootstrap-grid.css';
 import './bootstrap/css/bootstrap-reboot.css';
 import AuctionList from './componet/AuctionList';
 import AuctionCreate from './componet/AuctionCreate';
-import AuctionMap from './componet/AuctionMap';
 import AuctionDetail from './componet/AuctionDetail';
 import { BrowserRouter, Route, Switch,Redirect} from 'react-router-dom';
 import { translate} from 'react-i18next';
@@ -92,10 +91,6 @@ class App extends Component {
                           from = ""
                           to="/register"
                       />
-                  )}
-
-                  {!isAuthenticated() &&(
-                      this.login.bind(this)
                   )}
 
                   <meta charSet="utf-8" />

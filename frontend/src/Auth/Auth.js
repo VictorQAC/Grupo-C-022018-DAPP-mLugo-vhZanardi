@@ -47,7 +47,8 @@ export default class Auth {
     localStorage.setItem('expires_at', expiresAt);
     localStorage.setItem('profile',authResult.profile);
     // navigate to the home route
-    history.replace('/home');
+    // history.replace('/home');
+
   }
 
     getAccessToken() {
