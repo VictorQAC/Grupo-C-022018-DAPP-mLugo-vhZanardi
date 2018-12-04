@@ -38,7 +38,7 @@ public class UserConfig {
 
             User user = new User("Facundo","Diz","chinocaneo@qac.com",
                     "vamosCervecero78",new DateTime("1983-08-17"));
-            Auction auction = new Auction("Bocha","Subasta de prueba",
+            Auction auction = new Auction("Bocha","Terrible pelota para jugar alto partido con los vagos",
                     "Calle Falsa 123",500,new DateTime("2018-08-25"),
                     new DateTime("2018-08-27"),LocalTime.parse("22:00:00"),user);
 
@@ -57,7 +57,7 @@ public class UserConfig {
             User user3 = new User("Bart","Simpsons","chinocaneo@qac.com",
                     "vamosCervecero78",new DateTime("1983-08-17"));
             user3.setNickName("victorh.zanardi");
-            Auction auction3 = new Auction("Camiseta de Quilmes","Subasta de prueba",
+            Auction auction3 = new Auction("Camiseta de Quilmes","La casaca del mas GRANDE DEL SUR!!!!",
                     "Calle Falsa 123",1200,new DateTime("2018-08-25"),
                     new DateTime("2018-08-27"),LocalTime.parse("22:00:00"),user3);
 
@@ -66,7 +66,7 @@ public class UserConfig {
 
             User user4 = new User("Jose","Lopez","josel@qac.com",
                     "jlp123",new DateTime("1983-08-17"));
-            Auction auction4 = new Auction("Bolso","Subasta de prueba",
+            Auction auction4 = new Auction("Bolso","Este es un re bolso, lo podrias usar como la Barnybolsa",
                     "Calle 4",10,new DateTime("2018-08-25"),
                     new DateTime("2018-08-27"),LocalTime.parse("22:00:00"),user4);
 
