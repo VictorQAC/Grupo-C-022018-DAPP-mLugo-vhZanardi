@@ -23,7 +23,8 @@ class AuctionList extends React.Component {
         this.state = {
             auctions: [],
             isLoading: false,
-            nickNameLogin: this.props.nickNameLogin
+            nickNameLogin: undefined,
+            auth: this.props.auth
         };
     }
 
@@ -35,6 +36,16 @@ class AuctionList extends React.Component {
         }
         else
         {
+            if (this.state.auth.isAuthenticated()) {
+                this.state.auth.getProfile((err, profile) => {
+
+                    this.setState({
+                        nickNameLogin: profile.nickname
+                    });
+                    console.log(this.state);
+                })
+            }
+
             const {auth_token} = localStorage.getItem("access_token");
             let header_obj = {'Authorization': auth_token};
             fetch('/api/auctionList',{headers:header_obj})
@@ -45,7 +56,12 @@ class AuctionList extends React.Component {
     }
 
     delete(id){
-        axios.delete('/api/auctionDelete/'+id);
+
+        axios.delete('/api/auctionDelete/'+id)
+            .then(function (response) {
+                alert("Subasta Eliminada!!!");
+                window.location.reload();
+            });
     }
 
     render() {

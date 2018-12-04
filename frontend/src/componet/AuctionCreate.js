@@ -59,8 +59,11 @@ class AuctionCreate extends React.Component {
             event.preventDefault();
             const {auth_token} = localStorage.getItem("access_token")
             let header_obj = {'Authorization': auth_token};
-            axios.post('api/auctionCreate', this.state.auction, {headers: header_obj});
-            console.log(this.state.auction);
+            axios.post('api/auctionCreate', this.state.auction, {headers: header_obj})
+                .then(function (response) {
+                    alert("Subasta creada");
+                    window.location.reload();
+                });
         }
     }
 

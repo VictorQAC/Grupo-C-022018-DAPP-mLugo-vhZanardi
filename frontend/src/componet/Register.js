@@ -20,7 +20,11 @@ class Register extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('/api/userCreate',this.state.user);
+        axios.post('/api/userCreate',this.state.user)
+            .then(function (response) {
+                alert("Te registraste con exito!!!!");
+                window.location.reload();
+            });
 
     }
 

@@ -186,7 +186,7 @@ class App extends Component {
                       <Switch>
                           <Route
                               path="/home"
-                              render={() => <AuctionList nickNameLogin={this.state.nickNameLogin}/>} />
+                              render={() => <AuctionList auth={this.props.auth}/>} />
                       </Switch>
 
                       <Switch>
