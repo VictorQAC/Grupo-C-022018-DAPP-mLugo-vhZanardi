@@ -44,7 +44,7 @@ class Register extends React.Component {
 
                     <form onSubmit={this.handleSubmit}>
 
-                        <Trans i18nKey="register.title"><h3> </h3></Trans>
+                        <h2 style={{textAlign:"center", color:"blue"}}><Trans i18nKey="register.title"></Trans> </h2>
 
                         <div className="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
 

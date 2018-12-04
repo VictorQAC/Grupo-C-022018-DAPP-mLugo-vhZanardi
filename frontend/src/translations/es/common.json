@@ -36,7 +36,7 @@
   },
 
   "register":{
-    "title": "Abrir una cuenta",
+    "title": "Crear una cuenta",
     "name": "Nombre",
     "lastName": "Apellido",
     "email": "Correo electronico",
