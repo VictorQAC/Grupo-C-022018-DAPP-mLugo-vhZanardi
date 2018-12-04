@@ -16,17 +16,37 @@ class AuctionCreate extends React.Component {
                 picture: undefined,
                 dateInit: undefined,
                 dateFinal: undefined,
-                hoursFinal: undefined
-            }
+                hoursFinal: undefined,
+                nickName: undefined
+            },
+            auth: this.props.auth
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount(){
+
+        if(this.state.auth.isAuthenticated()){
+            this.state.auth.getProfile((err,profile) => {
+
+                this.setState({auction:{ title:undefined,
+                        description: undefined,
+                        priceInit: undefined,
+                        picture: undefined,
+                        dateInit: undefined,
+                        dateFinal: undefined,
+                        hoursFinal: undefined,
+                        nickName: profile.nickname}});
+                console.log(this.state);
+            })
+        }
     }
 
     handleSubmit(event){
         event.preventDefault();
         const {auth_token} = localStorage.getItem("access_token")
         let header_obj = {'Authorization': auth_token};
-        axios.post('api/auctionCreate',{headers:header_obj},this.state.auction);
+        axios.post('api/auctionCreate',this.state.auction,{headers:header_obj});
         console.log(this.state.auction);
     }
 
@@ -73,6 +93,10 @@ class AuctionCreate extends React.Component {
 
                         <Trans i18nKey = "auction.endingTime"><label htmlFor="hoursFinal">Finish Date</label></Trans>
                         <input id="hoursFinal" name="hoursFinal" required="required" class="form" value={this.state.auction.hoursFinal} type="time" onChange={this.updateState.bind(this,'hoursFinal')} />
+                        <br/>
+
+                        <Trans i18nKey ="auction.owner"><label htmlFor="nickName">Description</label></Trans>
+                        <input id="nickName" name="nickName"  required="required" class="form" value={this.state.auction.nickName} type="text" readonly="readonly"/>
                         <br/>
 
                     </div>

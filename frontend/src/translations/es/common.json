@@ -26,7 +26,8 @@
     "publicationDate": "Fecha de Publicación",
     "finishDate": "Fecha de Finalización",
     "endingTime": "Hora de finalización",
-    "detail": "Detalles de la Subasta"
+    "detail": "Detalles de la Subasta",
+    "owner": "Creador"
   },
 
   "auctionHistory":{

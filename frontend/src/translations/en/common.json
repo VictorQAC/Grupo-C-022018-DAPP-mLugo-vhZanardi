@@ -26,7 +26,8 @@
     "publicationDate": "Publication date",
     "finishDate": "Finish Date",
     "endingTime": "Ending time",
-    "detail": "Auction Details"
+    "detail": "Auction Details",
+    "owner": "Owner"
   },
 
   "auctionHistory":{

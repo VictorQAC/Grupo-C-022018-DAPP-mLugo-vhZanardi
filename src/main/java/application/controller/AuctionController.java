@@ -54,6 +54,11 @@ public class AuctionController {
         a.setDateInit(new DateTime(auction.getDateInit()));
         a.setDateFinal(new DateTime(auction.getDateFinal()));
         a.setHoursFinal(LocalTime.parse(auction.getHoursFinal()));
+
+        User res = userRepository.findByNickName(auction.getNickName().toString());
+        a.setOwner(res);
+        a.setCurrentWinner(res);
+
         repository.save(a);
     }
 

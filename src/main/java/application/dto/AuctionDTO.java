@@ -9,7 +9,7 @@ public class AuctionDTO{
     private String dateInit;
     private String dateFinal;
     private String hoursFinal;
-
+    private String nickName;
 
     public AuctionDTO() {
     }
@@ -68,5 +68,13 @@ public class AuctionDTO{
 
     public void setHoursFinal(String hoursFinal) {
         this.hoursFinal = hoursFinal;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

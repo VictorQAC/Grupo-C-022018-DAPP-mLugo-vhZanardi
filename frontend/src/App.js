@@ -59,7 +59,7 @@ class App extends Component {
             .then(data => this.setState({user: data}));
     }*/
 
-    componentWillReceiveProps(){//componentwillreciveprops
+    componentWillReceiveProps(){
 
         if(this.props.auth.isAuthenticated()){
             this.props.auth.getProfile((err,profile) => {
@@ -198,7 +198,7 @@ class App extends Component {
                       <Switch>
                           <Route
                               path="/auctionCreate"
-                              render={() => <AuctionCreate/>} />
+                              render={() => <AuctionCreate auth={this.props.auth}/>} />
                       </Switch>
 
                   </div>
