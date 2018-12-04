@@ -26,28 +26,42 @@ class AuctionCreate extends React.Component {
 
     componentDidMount(){
 
-        if(this.state.auth.isAuthenticated()){
-            this.state.auth.getProfile((err,profile) => {
+        if (localStorage.getItem("access_token") == null) {
+            alert("Please log in to continue");
+        } else {
 
-                this.setState({auction:{ title:undefined,
-                        description: undefined,
-                        priceInit: undefined,
-                        picture: undefined,
-                        dateInit: undefined,
-                        dateFinal: undefined,
-                        hoursFinal: undefined,
-                        nickName: profile.nickname}});
-                console.log(this.state);
-            })
+            if (this.state.auth.isAuthenticated()) {
+                this.state.auth.getProfile((err, profile) => {
+
+                    this.setState({
+                        auction: {
+                            title: undefined,
+                            description: undefined,
+                            priceInit: undefined,
+                            picture: undefined,
+                            dateInit: undefined,
+                            dateFinal: undefined,
+                            hoursFinal: undefined,
+                            nickName: profile.nickname
+                        }
+                    });
+                    console.log(this.state);
+                })
+            }
         }
     }
 
     handleSubmit(event){
-        event.preventDefault();
-        const {auth_token} = localStorage.getItem("access_token")
-        let header_obj = {'Authorization': auth_token};
-        axios.post('api/auctionCreate',this.state.auction,{headers:header_obj});
-        console.log(this.state.auction);
+
+        if (localStorage.getItem("access_token") == null) {
+            alert("Please log in to continue");
+        } else {
+            event.preventDefault();
+            const {auth_token} = localStorage.getItem("access_token")
+            let header_obj = {'Authorization': auth_token};
+            axios.post('api/auctionCreate', this.state.auction, {headers: header_obj});
+            console.log(this.state.auction);
+        }
     }
 
     updateState = (name,event) => {
