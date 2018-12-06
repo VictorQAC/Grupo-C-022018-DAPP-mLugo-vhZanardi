@@ -56,6 +56,7 @@ public class UserConfig {
 
             User user3 = new User("Bart","Simpsons","chinocaneo@qac.com",
                     "vamosCervecero78",new DateTime("1983-08-17"));
+            //user3.setNickName("victorh.zanardi");
             Auction auction3 = new Auction("Camiseta de Quilmes","La casaca del mas GRANDE DEL SUR!!!!",
                     "Calle Falsa 123",1200,new DateTime("2018-08-25"),
                     new DateTime("2018-08-27"),LocalTime.parse("22:00:00"),user3);

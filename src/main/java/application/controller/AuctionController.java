@@ -58,6 +58,7 @@ public class AuctionController {
         User res = userRepository.findByNickName(auction.getNickName().toString());
         a.setOwner(res);
         a.setCurrentWinner(res);
+        a.setCurrentWinnerString(res.getNickName());
 
         repository.save(a);
     }
@@ -104,18 +105,11 @@ public class AuctionController {
     @GetMapping(path ="/auctionMakeABid/{id}/{nickName}")
     public String auctionMakeABid(@PathVariable String id,@PathVariable String nickName) {
 
-        User res = userRepository.findByNickName(nickName);
+        Auction a = repository.getOne(Long.parseLong(id));
 
-        /*User user5 = new User("Elad","Haim","ehaim@qac.com",
-                "jlp123",new DateTime("1980-10-10"));*/
+        String result = a.makeABidBis(nickName,1000);
 
-        Optional<Auction> a = repository.findById(Long.parseLong(id));
-
-        a.get().setState(new InProgressAuction());
-
-        String result = a.get().makeABid(res,1000);
-
-        repository.save(a.get());
+        repository.save(a);
 
         return result;
     }

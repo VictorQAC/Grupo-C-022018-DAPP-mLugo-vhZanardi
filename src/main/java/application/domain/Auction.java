@@ -56,6 +56,8 @@ public class Auction {
     @JoinColumn(name = "auctionhistory_id")
     private List<AuctionHistory> history = new ArrayList<AuctionHistory>();
 
+    private String currentWinnerString;
+
     public Auction(){};
 
     public Auction(String title, String description, String address, double priceInit, DateTime dateInit,
@@ -69,13 +71,14 @@ public class Auction {
         this.dateFinal = dateFinal;
         this.hoursFinal = hoursFinal;
         this.owner = owner;
-        this.state = new NewAuction();
+        this.state = new InProgressAuction();
         this.autoBid = priceInit;
         this.currentWinner = owner;
         this.history = new ArrayList<AuctionHistory>();
         this.dateInitString = this.dateInit.toString();
         this.dateFinalString = this.dateFinal.toString();
         this.hoursFinalString = this.hoursFinal.toString();
+        this.currentWinnerString = owner.getNickName();
     }
 
     public void inProgress(){
@@ -136,6 +139,31 @@ public class Auction {
             this.setPriceInit(nextBid);
             this.addNewBid(1,user.getName(),DateTime.now(),this.lastSectionNumber() + 1);
         }
+        return "Oferta realizada";
+    }
+
+    public String makeABidBis(String nickName, double autoBid){
+
+        double nextBid = this.getPriceInit() * 0.05 + this.getPriceInit();
+
+        if(this.getCurrentWinnerString().equals(nickName) || !this.getState().isInProgress()){
+            return "No se puede ofertar ya que usted es el Owner";
+        }
+
+
+        if(this.fiveMinutesLeftToFinish() && !this.exceeds48Hours()){
+
+            this.setPriceInit(nextBid);
+            this.setCurrentWinnerString(nickName);
+            this.setHoursFinal(this.getHoursFinal().plusMinutes(5));
+            this.addNewBid(1,nickName,DateTime.now(),this.lastSectionNumber() + 1);
+
+        } else {
+            this.setPriceInit(nextBid);
+            this.setCurrentWinnerString(nickName);
+            this.addNewBid(1,nickName,DateTime.now(),this.lastSectionNumber() + 1);
+        }
+
         return "Oferta realizada";
     }
 
@@ -323,6 +351,14 @@ public class Auction {
 
     public void setHoursFinalString(String hoursFinalString) {
         this.hoursFinalString = hoursFinalString;
+    }
+
+    public String getCurrentWinnerString() {
+        return currentWinnerString;
+    }
+
+    public void setCurrentWinnerString(String currentWinnerString) {
+        this.currentWinnerString = currentWinnerString;
     }
 
 }
