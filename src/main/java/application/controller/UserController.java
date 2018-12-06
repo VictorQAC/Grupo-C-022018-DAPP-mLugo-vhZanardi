@@ -7,6 +7,7 @@ import application.dto.UserDTO;
 import application.repository.UserRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
@@ -14,7 +15,7 @@ import java.util.Optional;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-
+@Transactional
 @RestController
 public class UserController {
 
